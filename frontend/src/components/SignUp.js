@@ -1,0 +1,33 @@
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import { authFunc } from './HelperFunc';
+
+function SignUp(props) {
+    props.setHpHeading('Sign Up to Link your Bank Account')
+    useEffect(()=>{
+        props.setDisableBtn(true);
+      },[])
+  return (
+    <>
+        <div id="HpLeftContent">
+            <div className="invalidDetails"></div>
+            <div className='loginCredentials'>
+                <span>Account No. : </span>
+                <input type="number" placeholder='Enter your account number' onChange={()=>props.disableBtn('loginCredentials','signUpBtn')}/>
+            </div>
+            <div className='loginCredentials'>
+                <span>Username : </span>
+                <input type="text" placeholder='Enter your username' onChange={()=>props.disableBtn('loginCredentials','signUpBtn')}/>
+            </div>
+            <div className='loginCredentials'>
+                <span>Password : </span>
+                <input type="password" placeholder='Enter your password' onChange={()=>props.disableBtn('loginCredentials','signUpBtn')}/>
+            </div>
+            <button className='btn' onClick={()=>{authFunc('/signUp',true)}} id='signUpBtn' disabled={props.disabledBtn}>Sign Up</button>
+            <p><Link to="/login">Login</Link></p>
+        </div>
+    </>
+  )
+}
+
+export default SignUp
