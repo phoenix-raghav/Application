@@ -1,0 +1,4 @@
+* mongod needs to be started from cmd
+* console error
+* state not updating instantaneously
+#* timeout in mongodb connection

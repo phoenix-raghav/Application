@@ -1,0 +1,152 @@
+.noSpacing{
+  padding: 0;
+  margin: 0;
+}
+.btn{
+  font-size: 17px;
+  padding: 6px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(94, 94, 211);
+  color: white;
+}
+.btn:hover{
+  cursor: pointer;
+  background-color: silver !important;
+  color: black !important;
+}
+.btn:disabled{
+  background-color: silver;
+  color: white;
+}
+.btn:disabled:hover{
+  background-color: silver;
+  color: white !important;
+}
+/* **************** HomePage UI *************** */
+#HpScr{
+  width: 100vw;
+  height: 100vh;
+  background-color: antiquewhite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#HpInnerScr{
+  height: 80%;
+  width: 85%;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: white;
+}
+#HpHeading{
+  /* border: 1px solid black; */
+  height: 20%;
+  font-size: 30px;
+  text-align: center;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#HpLeftSec{
+  height: 80%;
+  /* border: 1px solid black; */
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#HpRightSec{
+  width: 50%;
+  height: 80%;
+  /* border: 1px solid black; */
+}
+#HpRightSec img{
+  width: 90%;
+  height: 90%;
+  /* border: 1px solid black; */
+}
+#HpSections{
+  display: flex;
+  width: 100%;
+  height: 80%;
+}
+/* #HpLeftContent button{
+  color: white;
+} */
+#HpLeftContent{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+#HpLogin{
+  display: block;
+  margin: 15px;
+}
+
+/* **************** Login UI *************** */
+.loginCredentials span{
+  display: inline-block;
+  width: 250px;
+  font-size: 30px;
+}
+.loginCredentials{
+  margin: 25px;
+}
+.loginCredentials span{
+  display: inline-block;
+  width: 190px;
+  font-size: 30px;
+}
+.loginCredentials input{
+  display: inline-block;
+  width: 260px;
+  font-size: 25px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 4px;
+}
+#loginBtn, #signUpBtn{
+  font-size: 20px;
+  padding: 8px 20px;
+}
+
+/* **************** Account Creation UI *************** */
+#CreateAccount{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+.userDetails{
+  font-size: 20px;
+  margin: 15px;
+}
+.userDetails span{
+  width: 150px;
+  text-align: center;
+  display: inline-block;
+}
+.userDetails input{
+  width: 240px;
+  font-size: 19px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 4px;
+  display: inline-block;
+}
+.userGender{
+  width: fit-content !important;
+}
+#userGenderBox{
+  display: inline-block;
+  text-align: left;
+  width: 240px;
+}
+.invalidDetails{
+  color: red;
+}
+#dispAccNo{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+#dispAccNo div{
+  margin: 20px;
+}
