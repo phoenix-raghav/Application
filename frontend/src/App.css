@@ -176,6 +176,10 @@
   flex-direction: column;
   justify-content: end;
 }
+#MsLeftSec a{
+  text-decoration: none;
+  color: white;
+}
 #MsRightSec{
   /* border: 2px solid green; */
   width: 30vw;
@@ -305,4 +309,124 @@
   color: white;
   font-size: 25px;
   text-align: center;
+}
+#userProfScr{
+  /* height: 100vh; */
+  background-color: rgb(234, 201, 234);
+}
+#userProfScr h1{
+  font-size: 70px;
+  font-style: italic;
+  font-weight: bold;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+#UPImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#UPImage p{
+  text-align: center;
+  font-weight: bolder;
+  position: relative;
+  right: 240px;
+  color: blue;
+  font-size: 30px;
+}
+#UPImage img{
+  display: block;
+  height: 35vh;
+  border: 2px solid black;
+  border-radius: 120px;
+  background-color: white;
+}
+#UPImage img:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
+#UPDetails{
+  /* border: 2px solid black; */
+  width: 70vw;
+  margin: auto;
+  display: flex;
+
+}
+#UPDetails div{
+  width: 50%;
+}
+#UPDetails p{
+  margin: 40px 20px;
+  font-size: 25px;
+}
+#BLScr{
+  background-color: rgb(234, 201, 234);
+  height: 100vh;
+}
+#BLImage{
+  /* border: 2px solid black; */
+  padding: 20px;
+  text-align: center;
+}
+#BLImage img{
+  border: 2px solid black;
+  height: 50vh;
+  width: 25vw;
+  border-radius: 240px;
+}
+#BLBalance p{
+  font-size: 50px;
+  text-align: center;
+  padding: 10px;
+}
+#MTScr{
+  background-color: rgb(234, 201, 234);
+  height: 100vh;
+  display: flex;
+}
+#MTRightSec{
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#MTLeftSec{
+  width: 50vw;
+  height: 70vh;
+  /* border: 2px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#MTRightSec img{
+  border: 2px solid black;
+  height: 50vh;
+  width: 25vw;
+  border-radius: 240px;
+}
+#MTLeftSec div{
+  margin: 20px;
+  text-align: center;
+}
+#MTLeftSec span{
+  display: inline-block;
+  text-align: center;
+  width: 170px;
+  font-size: 25px;
+}
+#MTLeftSec input{
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px;
+  width: 300px;
+  font-size: 25px;
+}
+#payBtn{
+  padding: 5px 30px;
+  font-size: 25px;
 }

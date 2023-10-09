@@ -7,7 +7,7 @@ function News() {
     },[])
     const toggleNewsItems = (direc) =>{
         Array.from(document.getElementsByClassName('newsItems')).forEach(element=>{
-            element.remove();
+            element.remove(); 
         })
         if(direc == 'forward')
             document.querySelector('#backward div').style.display='block';
@@ -17,6 +17,9 @@ function News() {
         const end = start+4;
         while(start<end && start<newsItems.length)
         {
+            const link = document.createElement('a');
+            link.setAttribute('href','https://www.hindustantimes.com/education/employment-news/sbi-po-2023-admit-card-likely-next-week-steps-to-download-from-sbicoin-101696744293004.html');
+            link.setAttribute('target','_blank');
             const box = document.createElement('div');
             box.setAttribute('class','newsItems');
             const img = document.createElement('img');
@@ -26,7 +29,8 @@ function News() {
             p.append(newsItems[start].heading.slice(0,50) + ' .....');
             box.appendChild(img);
             box.appendChild(p);
-            document.getElementById('newsBox').appendChild(box);
+            link.appendChild(box);
+            document.getElementById('newsBox').appendChild(link);
             start++;
         }
         if(start==newsItems.length)
@@ -42,15 +46,7 @@ function News() {
                     <button onClick={()=>{toggleNewsItems('backward')}}>&lt;</button>
                 </div>
             </div>
-            <div id="newsBox">
-                <div className="newsItems">
-                    <img src={process.env.PUBLIC_URL + './Transfer.jpeg'} alt="" />
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, dolores.</p>
-                </div>
-                <div className="newsItems">2</div>
-                <div className="newsItems">3</div>
-                <div className="newsItems">4</div>
-            </div>
+            <div id="newsBox"></div>
             <div id='forward' className='newsBtn'>
                 <div>
                     <button onClick={()=>{toggleNewsItems('forward')}}>&gt;</button>
