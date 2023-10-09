@@ -1,4 +1,5 @@
-export async function authFunc (endpoint, isSignUp){
+
+export async function authFunc (endpoint, isSignUp,nav){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
         const x = Array.from(document.querySelectorAll('.loginCredentials input'));
@@ -19,11 +20,12 @@ export async function authFunc (endpoint, isSignUp){
         if(rsp.status==200)
         {
             alert(data.msg);
-            window.location.pathname = '/';
+            nav('/user')
         }
     }
     catch{
         console.log('Internal Server Error');
+        alert('Internal Server Error')
     }
 }
 export const adArr = ['https://media.cnn.com/api/v1/images/stellar/prod/160505174531-18-coca-cola-anniversary.jpg?q=w_1600,h_900,x_0,y_0,c_fill','https://cdn.telanganatoday.com/wp-content/uploads/2022/01/29hy_7_29012022_1.jpg','https://gumlet.assettype.com/afaqs%2F2023-07%2F04227f9d-e69f-4eff-b8f0-cc023ebddc08%2FUntitled_design___2023_07_20T233411_959.png?auto=format&q=35&w=1200','https://i.ytimg.com/vi/QUoJRZgJ-ZE/maxresdefault.jpg'];

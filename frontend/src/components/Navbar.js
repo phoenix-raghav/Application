@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -45,7 +46,7 @@ function Navbar() {
           </div>
           <div id="userActions">
             <button className="userActionBtn">Logout</button>
-            <button className="userActionBtn">Profile</button>
+            <Link to="/user/profile"><button className="userActionBtn">Profile</button></Link>
           </div>
         <div className="form-check form-switch">
             <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authFunc } from './HelperFunc';
 
 function SignUp(props) {
+    const nav = useNavigate();
     props.setHpHeading('Sign Up to Link your Bank Account')
     useEffect(()=>{
         props.setDisableBtn(true);
@@ -23,7 +24,7 @@ function SignUp(props) {
                 <span>Password : </span>
                 <input type="password" placeholder='Enter your password' onChange={()=>props.disableBtn('loginCredentials','signUpBtn')}/>
             </div>
-            <button className='btn' onClick={()=>{authFunc('/signUp',true)}} id='signUpBtn' disabled={props.disabledBtn}>Sign Up</button>
+            <button className='btn' onClick={()=>{authFunc('/signUp',true,nav)}} id='signUpBtn' disabled={props.disabledBtn}>Sign Up</button>
             <p><Link to="/login">Login</Link></p>
         </div>
     </>

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authFunc } from './HelperFunc';
 
 function Login(props) {
+  const nav = useNavigate();
   props.setHpHeading('Login to view your Account Details');
   useEffect(()=>{
     props.setDisableBtn(true);
@@ -19,7 +20,7 @@ function Login(props) {
                 <span>Password : </span>
                 <input type="password" placeholder='Enter your password' onChange={()=>props.disableBtn('loginCredentials','loginBtn')}/>
             </div>
-            <button className='btn' id='loginBtn' onClick={()=>{authFunc('/login',false)}} disabled={props.disabledBtn}>Login</button>
+            <button className='btn' id='loginBtn' onClick={()=>{authFunc('/login',false,nav)}} disabled={props.disabledBtn}>Login</button>
             <p>Haven't linked yet, Don't worry <Link to="/signup">Sign Up</Link></p>
         </div>
     </>

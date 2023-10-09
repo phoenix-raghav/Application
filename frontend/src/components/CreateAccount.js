@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function CreateAccount(props) {
     props.setHpHeading("Enter your Details");
+    const nav = useNavigate();
     useEffect(()=>{
         props.setDisableBtn(true);
       },[])
@@ -25,8 +27,8 @@ function CreateAccount(props) {
             if(rsp.status==200)
             {
                 alert(data.msg);
-                localStorage.setItem('accNo',data.accountNo);
-                window.location.href = 'http://localhost:3000/accountNo';
+                props.setAccNo(data.accountNo);
+                nav('/accountNo')
             }
         }
         catch{
