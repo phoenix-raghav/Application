@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { verifyUser } from './HelperFunc'
 
-function UserProfile() {
+
+function UserProfile(props) {
+    const nav = useNavigate();
+    useEffect(()=>{
+      verifyUser(nav);
+    })
   return (
     <>
         <div id='userProfScr'>
@@ -11,16 +18,16 @@ function UserProfile() {
             </div>
             <div id="UPDetails">
                 <div>
-                    <p><b>Name :</b> </p>
-                    <p><b>Address :</b> </p>
-                    <p><b>Phone No. :</b> </p>
-                    <p><b>Date of Birth :</b> </p>
+                    <p><b>Name : </b>{props.details.name} </p>
+                    <p><b>Address : </b>{props.details.address} </p>
+                    <p><b>Phone No. : </b>{props.details.phoneNo} </p>
+                    <p><b>Date of Birth : </b>{props.details.dob} </p>
                 </div>
                 <div>
-                    <p><b>Email :</b> </p>
-                    <p><b>Gender :</b> </p>
-                    <p><b>Account No. :</b> </p>
-                    <p><b>Username :</b> </p>
+                    <p><b>Email : </b>{props.details.email} </p>
+                    <p><b>Gender : </b>{props.details.gender} </p>
+                    <p><b>Account No. : </b>{props.details.accountNo} </p>
+                    <p><b>Username : </b>{props.details.userName} </p>
                 </div>
             </div>
         </div>

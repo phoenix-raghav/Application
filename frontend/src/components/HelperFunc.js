@@ -1,5 +1,5 @@
 
-export async function authFunc (endpoint, isSignUp,nav){
+export async function authFunc (endpoint, isSignUp,nav,setDetails){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
         const x = Array.from(document.querySelectorAll('.loginCredentials input'));
@@ -20,7 +20,9 @@ export async function authFunc (endpoint, isSignUp,nav){
         if(rsp.status==200)
         {
             alert(data.msg);
-            nav('/user')
+            setDetails(data.body);
+            localStorage.setItem('authToken',data.authToken);
+            nav('/user');
         }
     }
     catch{
@@ -28,6 +30,90 @@ export async function authFunc (endpoint, isSignUp,nav){
         alert('Internal Server Error')
     }
 }
+export async function makeTransaction(endpoint, details, setDetails){
+    try{
+        document.querySelector('.invalidDetails').innerHTML='';
+        const x = Array.from(document.querySelectorAll('.MTInputs input'));
+        const url = 'http://127.0.0.1:8080' + endpoint;
+
+        if(x[2].value>details.balance)
+        {
+            document.querySelector('.invalidDetails').innerHTML='Balance not sufficient';
+            return;
+        }    
+        const body = {credAccNo: x[0].value, depAccNo: details.accountNo, credUserName: x[1].value, depUserName:details.userName, amount: x[2].value, depPassword:x[3].value}
+        const params = {
+            method: "POST",
+            headers : {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        }
+        const rsp = await fetch(url,params);
+        const data = await rsp.json();  
+        if(rsp.status==400)
+            document.querySelector('.invalidDetails').innerHTML=data.msg;
+        if(rsp.status==500)
+        alert(data.msg);
+        if(rsp.status==200)
+        {
+            alert(data.msg);
+            if(details.userName !== x[1].value)
+                setDetails((prevState,amount)=>{
+                    return {...prevState,balance:details.balance-x[2].value}
+                });
+            document.querySelector('.invalidDetails').innerHTML=data.msg;
+        }
+    }
+    catch{
+        console.log('Internal Server Error');
+        alert('Internal Server Error')
+    }
+}
+export async function getTransList(endpoint, userName, setList){
+    try{
+        const url = 'http://127.0.0.1:8080' + endpoint;
+
+        const params = {
+            method: "POST",
+            headers : {'Content-Type': 'application/json'},
+            body: JSON.stringify({userName:userName})
+        }
+        const rsp = await fetch(url,params);
+        const data = await rsp.json();  
+        if(rsp.status==500)
+        {
+            alert(data.msg);
+        }
+        if(rsp.status==200)
+        {
+            setList(data.list);
+        }
+    }
+    catch{
+        console.log('Internal Server Error');
+        alert('Internal Server Error')
+    }
+}
+
+export async function verifyUser(nav){
+    try{
+        const url = 'http://127.0.0.1:8080/verify';
+
+        const params = {
+            method: "POST",
+            headers : {'Content-Type': 'application/json','authToken':localStorage.getItem('authToken')}
+        }
+        const rsp = await fetch(url,params);
+        if(rsp.status==401)
+        {
+            nav('/login');
+        }
+    }
+    catch{
+        console.log('Internal Server Error');
+        alert('Internal Server Error')
+    }
+}
+
 export const adArr = ['https://media.cnn.com/api/v1/images/stellar/prod/160505174531-18-coca-cola-anniversary.jpg?q=w_1600,h_900,x_0,y_0,c_fill','https://cdn.telanganatoday.com/wp-content/uploads/2022/01/29hy_7_29012022_1.jpg','https://gumlet.assettype.com/afaqs%2F2023-07%2F04227f9d-e69f-4eff-b8f0-cc023ebddc08%2FUntitled_design___2023_07_20T233411_959.png?auto=format&q=35&w=1200','https://i.ytimg.com/vi/QUoJRZgJ-ZE/maxresdefault.jpg'];
 
 export const newsItems = [{

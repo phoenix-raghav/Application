@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { makeTransaction } from './HelperFunc';
+import { useNavigate } from 'react-router-dom';
+import { verifyUser } from './HelperFunc'
 
-function MakeTransaction() {
+function MakeTransaction(props) {
+    const nav = useNavigate();
+    useEffect(()=>{
+      verifyUser(nav);
+      props.setDisableBtn(true);
+    },[])
   return (
     <>
         <div id='MTScr'>
             <div id='MTLeftSec'>
                 <div>
-                    <div><span>Account No. </span> : <input type="number" placeholder='Enter account number'/></div>
-                    <div><span>Username </span> : <input type="text" placeholder='Enter username'/></div>
-                    <div><span>Amount </span> : <input type="number" placeholder='Enter amount'/></div>
-                    <div><span>Password </span> : <input type="number" placeholder='Enter password'/></div>
-                    <div><button className='btn' id='payBtn'>Pay</button></div>
+                    <div className="invalidDetails"></div>
+                    <div className='MTInputs'><span>Account No. </span> : <input type="number" placeholder='Enter account number' onChange={()=>props.disableBtn('MTInputs','payBtn')}/></div>
+                    <div className='MTInputs'><span>Username </span> : <input type="text" placeholder='Enter username' onChange={()=>props.disableBtn('MTInputs','payBtn')}/></div>
+                    <div className='MTInputs'><span>Amount </span> : <input type="number" placeholder='Enter amount' onChange={()=>props.disableBtn('MTInputs','payBtn')}/></div>
+                    <div className='MTInputs'><span>Password </span> : <input type="text" placeholder='Enter password' onChange={()=>props.disableBtn('MTInputs','payBtn')}/></div>
+                    <div className='MTInputs'><button className='btn' id='payBtn' disabled={props.disabledBtn} onClick={()=>{makeTransaction('/transaction',props.details, props.setDetails)}}>Pay</button></div>
                 </div>
             </div>
             <div id='MTRightSec'>

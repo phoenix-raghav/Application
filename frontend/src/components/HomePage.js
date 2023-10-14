@@ -7,7 +7,12 @@ import CreateAccount from './CreateAccount'
 import AccountDisplay from './AccountDisplay'
 
 function HomePage(props) {
-
+    useEffect (() =>{
+        if(props.mode == 'light')
+          document.getElementById('HpInnerScr').style.backgroundColor = 'white';
+        else
+            document.getElementById('HpInnerScr').style.backgroundColor = '#393737';
+      });
   return (
     <>
         <div id="HpScr" className='noSpacing'>

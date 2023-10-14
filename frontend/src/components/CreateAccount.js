@@ -16,7 +16,7 @@ function CreateAccount(props) {
             const params = {
                 method: "POST",
                 headers : {'Content-Type': 'application/json'},
-                body: JSON.stringify({name: x[0].value, address: x[1].value, gender: gend, dob: x[4].value, phoneNo: x[5].value, email: x[6].value})
+                body: JSON.stringify({name: x[0].value, address: x[1].value, gender: gend, dob: x[4].value, phoneNo: x[5].value, email: x[6].value, balance: x[7].value})
             }
             const rsp = await fetch(url,params);
             const data = await rsp.json();  
@@ -62,6 +62,10 @@ function CreateAccount(props) {
         <div className='userDetails'>
             <span>Email : </span>
             <input type="email" placeholder='Enter your email' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+        </div>
+        <div className='userDetails'>
+            <span>Amount : </span>
+            <input type="number" placeholder='Enter your initial amount' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
         </div>
         <button onClick={sendData} className='btn' id='createAcBtn' disabled={props.disabledBtn}>Submit</button>
     </div>

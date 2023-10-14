@@ -1,10 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
+  const nav = useNavigate();
+  const logout = () =>{
+    localStorage.removeItem('authToken');
+    nav('/login');
+  }
+  const onModeChange = () =>{
+    props.setMode(props.mode == 'light'? 'dark':'light');
+  }
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className={`navbar navbar-expand-lg ${props.navMode.nav} ${props.navMode.navText} ${props.navMode.navBg} `}>
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
@@ -45,11 +53,11 @@ function Navbar() {
             </ul>
           </div>
           <div id="userActions">
-            <button className="userActionBtn">Logout</button>
+            <button className="userActionBtn" onClick={logout}>Logout</button>
             <Link to="/user/profile"><button className="userActionBtn">Profile</button></Link>
           </div>
         <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+            <input className="form-check-input" type="checkbox" onChange={onModeChange} role="switch" id="flexSwitchCheckDefault" checked={props.mode == 'light' ? false:true}/>
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
         </div>
         </div>

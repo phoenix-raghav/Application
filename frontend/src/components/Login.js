@@ -20,7 +20,7 @@ function Login(props) {
                 <span>Password : </span>
                 <input type="password" placeholder='Enter your password' onChange={()=>props.disableBtn('loginCredentials','loginBtn')}/>
             </div>
-            <button className='btn' id='loginBtn' onClick={()=>{authFunc('/login',false,nav)}} disabled={props.disabledBtn}>Login</button>
+            <button className='btn' id='loginBtn' onClick={()=>{authFunc('/login',false,nav,props.setDetails)}} disabled={props.disabledBtn}>Login</button>
             <p>Haven't linked yet, Don't worry <Link to="/signup">Sign Up</Link></p>
         </div>
     </>

@@ -21,7 +21,8 @@ const Schema = new mongoose.Schema({
         type: String,
         // unique: true
     },
-    password: String
+    password: String,
+    balance: Number
 })
 
 const User = mongoose.model('Users',Schema);

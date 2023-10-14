@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
 import { newsItems } from './HelperFunc';
+
 function News() {
     let start = 0;
+
     useEffect(()=>{
         toggleNewsItems();
-    },[])
+    },[]);
+
     const toggleNewsItems = (direc) =>{
         Array.from(document.getElementsByClassName('newsItems')).forEach(element=>{
             element.remove(); 
@@ -38,6 +41,7 @@ function News() {
         if(start==4)
             document.querySelector('#backward div').style.display='none';
     }
+
   return (
     <>
         <div id='News'>
@@ -50,7 +54,7 @@ function News() {
             <div id='forward' className='newsBtn'>
                 <div>
                     <button onClick={()=>{toggleNewsItems('forward')}}>&gt;</button>
-                </div>
+                </div>  
             </div>
         </div>
     </>

@@ -4,8 +4,11 @@ import {adArr} from './HelperFunc.js'
 function MidSection() {
   let count=1;
   setInterval(()=>{
-    document.getElementById('image').src=adArr[count%4];
-    count++;
+    if(document.getElementById('image'))
+    {
+      document.getElementById('image').src=adArr[count%4];
+      count++;
+    }
   },2000)
   return (
     <>
@@ -24,7 +27,7 @@ function MidSection() {
             <div id="MsRightSec">
                 <div>
                   <img id='image' src={adArr[0]} alt="Error loading Image" />
-                  <p className='noSpacing'>Advertisement</p>
+                  <p className='noSpacing' id='advertisement'>Advertisement</p>
                 </div>
             </div>
         </div>
