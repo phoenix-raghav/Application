@@ -10,12 +10,11 @@ import { useSelector } from 'react-redux'
 function HomePage(props) {
 
     const heading = useSelector(state=> state.heading);
+    const {mode} = useSelector(state=> state.mode);
 
     useEffect (() =>{
-        if(props.mode == 'light')
-          document.getElementById('HpInnerScr').style.backgroundColor = 'white';
-        else
-            document.getElementById('HpInnerScr').style.backgroundColor = '#393737';
+          document.getElementById('HpInnerScr').style.backgroundColor = mode == 'light' ? 'white' : '#393737';
+          document.getElementById('HpScr').style.backgroundColor = mode == 'light' ? 'white' : 'black';
       });
       
   return (

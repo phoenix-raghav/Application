@@ -36,3 +36,10 @@ export const setAccountNo = (accNo) =>{
         })
     }
 }
+export const changeMode = (mode) =>{
+    return dispatch => {
+        dispatch({
+            type: mode,
+        })
+    }
+}

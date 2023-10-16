@@ -1,18 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../state/actionCreators";
 
-function Navbar(props) {
+function Navbar() {
+
   const nav = useNavigate();
+  const mode = useSelector(state=>state.mode);
+  const dispatch = useDispatch();
+  const x = bindActionCreators(actionCreators,dispatch);
+
   const logout = () =>{
     localStorage.removeItem('authToken');
     nav('/login');
   }
-  const onModeChange = () =>{
-    props.setMode(props.mode == 'light'? 'dark':'light');
-  }
+
   return (
     <div>
-      <nav className={`navbar navbar-expand-lg ${props.navMode.nav} ${props.navMode.navText} ${props.navMode.navBg} `}>
+      <nav className={`navbar navbar-expand-lg ${mode.nav} ${mode.navText} ${mode.navBg} `}>
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
@@ -57,7 +63,7 @@ function Navbar(props) {
             <Link to="/user/profile"><button className="userActionBtn">Profile</button></Link>
           </div>
         <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" onChange={onModeChange} role="switch" id="flexSwitchCheckDefault" checked={props.mode == 'light' ? false:true}/>
+            <input className="form-check-input" type="checkbox" onChange={()=>{x.changeMode(mode.mode)}} role="switch" id="flexSwitchCheckDefault" checked={mode.mode == 'light' ? false:true}/>
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
         </div>
         </div>

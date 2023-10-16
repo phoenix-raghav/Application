@@ -1,21 +1,17 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 
-function Operations(props) {
+function Operations() {
+
+  const {mode} = useSelector(state=>state.mode);
+
   useEffect (() =>{
-    if(props.mode == 'light')
-    {
       document.querySelectorAll('#operations a').forEach(ele=>{
-        ele.style.color='black';
+        ele.style.color= mode == 'light' ? 'black' : 'white';
       });
-    }   
-    else
-    {
-      document.querySelectorAll('#operations a').forEach(ele=>{
-        ele.style.color='white';
-      });
-    }
   });
+
   return (
     <>
     <div id='operations'>

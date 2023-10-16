@@ -1,4 +1,7 @@
 const initialHeading = null;
+const initialMode = {
+    mode : 'light',navBg: 'bg-light', nav: 'navbar-light', navText: 'text-bg-light' 
+};
 
 export const changeHeading = (state=initialHeading, action)=>{
     switch(action.type)
@@ -30,6 +33,26 @@ export const changeAccNo = (state=null, action)=>{
     switch(action.type)
     {
         case 'setAccNo': return action.accNo;
+        default: return state;
+    }
+}
+export const changeMode = (state=initialMode, action)=>{
+    switch(action.type)
+    {
+        case 'dark': {
+            document.body.style.backgroundColor = 'rgb(234, 201, 234)';
+            document.body.style.color = 'black';
+            return {
+                mode : 'light',navBg: 'bg-light', nav: 'navbar-light', navText: 'text-bg-light' 
+            };
+        }
+        case 'light': {
+            document.body.style.backgroundColor = '#393737';
+            document.body.style.color = 'white';
+            return {
+                mode : 'dark',navBg: 'bg-dark', nav: 'navbar-dark', navText: 'text-bg-dark' 
+            };
+        }
         default: return state;
     }
 }

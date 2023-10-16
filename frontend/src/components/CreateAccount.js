@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
 
-function CreateAccount(props) {
+function CreateAccount() {
 
     const nav = useNavigate();
     const dispatch = useDispatch();

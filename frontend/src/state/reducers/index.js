@@ -4,5 +4,6 @@ import  * as reducers from './allReducers';
 export const rootReducer = combineReducers({
     heading: reducers.changeHeading,
     disableBtn: reducers.disableButton,
-    accountNo: reducers.changeAccNo
+    accountNo: reducers.changeAccNo,
+    mode : reducers.changeMode
 })

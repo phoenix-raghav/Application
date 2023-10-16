@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import {actionCreators} from '../state/actionCreators/index'
 import { useDispatch } from 'react-redux';
 
-function HomePageContent(props) {
+function HomePageContent() {
 
   const dispatch = useDispatch();
   const {actionHeading} = bindActionCreators(actionCreators,dispatch); 

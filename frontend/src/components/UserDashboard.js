@@ -7,18 +7,20 @@ import SocialMediaTags from './SocialMediaTags'
 import { useNavigate } from 'react-router-dom'
 import { verifyUser } from './HelperFunc'
 
-function UserDashboard(props) {
+function UserDashboard() {
+
   const nav = useNavigate();
   useEffect(()=>{
     verifyUser(nav);
   })
+  
   return (
     <>
         <div id='userDbScreen'>
             <header>
-                <Navbar mode={props.mode} setMode={props.setMode} navMode={props.navMode}/>
+                <Navbar/>
                 <MidSection/>
-                <Operations mode={props.mode}/>
+                <Operations/>
                 <News/>
                 <SocialMediaTags/>
             </header>

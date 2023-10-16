@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import withRouter, { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
-function AccountDisplay(props) {
+function AccountDisplay() {
 
   const dispatch = useDispatch();
   const accNo = useSelector(state=>state.accountNo);

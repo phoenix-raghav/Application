@@ -16,34 +16,17 @@ import MiniStatement from './components/MiniStatement';
 
 function App() {
   const [details,setDetails] = useState(null);
-  const [mode,setMode] = useState('light');
-  const [navMode,setNavMode] = useState({navBg: 'bg-light', nav: 'navbar-light', navText: 'text-bg-light' })
-  const changeMode = () =>{
-    if(mode == 'light')
-    {
-      document.body.style.backgroundColor = '#393737';
-      document.body.style.color = 'white';
-      setNavMode({navBg: 'bg-dark', nav: 'navbar-dark', navText: 'text-bg-dark' })
-    }   
-    else
-    {
-      document.body.style.backgroundColor = 'rgb(234, 201, 234)';
-      document.body.style.color = 'black';
-      setNavMode({navBg: 'bg-light', nav: 'navbar-light', navText: 'text-bg-light' })
-    }
-    setMode(mode == 'light' ? 'dark':'light');
-  }
 
   return (
     <>
       <BrowserRouter>
           <Routes>
-            <Route path='/' element={<HomePage mode={mode} ele={<HomePageContent/>}/>}></Route>
-            <Route path='/login' element={<HomePage mode={mode} ele={<Login setDetails={setDetails}/>}/>}></Route>
-            <Route path='/signup' element={<HomePage mode={mode} ele={<SignUp setDetails={setDetails}/>}/>}></Route>
-            <Route path='/create' element={<HomePage mode={mode} ele={<CreateAccount/>}/>}></Route>
-            <Route path='/accountNo' element={<HomePage mode={mode} ele={<AccountDisplay/>}/>}></Route>
-            <Route path='/user' element={<UserDashboard mode={mode} setMode={changeMode} navMode={navMode}/>}></Route> 
+            <Route path='/' element={<HomePage ele={<HomePageContent/>}/>}></Route>
+            <Route path='/login' element={<HomePage ele={<Login setDetails={setDetails}/>}/>}></Route>
+            <Route path='/signup' element={<HomePage ele={<SignUp setDetails={setDetails}/>}/>}></Route>
+            <Route path='/create' element={<HomePage ele={<CreateAccount/>}/>}></Route>
+            <Route path='/accountNo' element={<HomePage ele={<AccountDisplay/>}/>}></Route>
+            <Route path='/user' element={<UserDashboard/>}></Route> 
             <Route path='/user/profile' element={<UserProfile details={details}/>}></Route> 
             <Route path='/user/balance' element={<BalanceLeft details={details}/>}></Route> 
             <Route path='/user/transfer' element={<MakeTransaction setDetails={setDetails} details={details}/>}></Route> 
