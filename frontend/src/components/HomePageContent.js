@@ -1,8 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import {actionCreators} from '../state/actionCreators/index'
+import { useDispatch } from 'react-redux';
 
 function HomePageContent(props) {
-  props.setHpHeading("Welcome to Robber's Bank");
+
+  const dispatch = useDispatch();
+  const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
+  actionHeading("Welcome to Robber's Bank");
+  
   return (
     <div id="HpLeftContent">
       <h2>Want to Link an Existing account</h2>

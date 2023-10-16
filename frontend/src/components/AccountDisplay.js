@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import withRouter, { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
 function AccountDisplay(props) {
-  props.setHpHeading("Account Details");
+
+  const dispatch = useDispatch();
+  const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
+  actionHeading("Account Details");
+  
   return (
     <>
         <div id="dispAccNo">

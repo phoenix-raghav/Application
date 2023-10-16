@@ -5,20 +5,25 @@ import Login from './Login'
 import SignUp from './SignUp'
 import CreateAccount from './CreateAccount'
 import AccountDisplay from './AccountDisplay'
+import { useSelector } from 'react-redux'
 
 function HomePage(props) {
+
+    const heading = useSelector(state=> state.heading);
+
     useEffect (() =>{
         if(props.mode == 'light')
           document.getElementById('HpInnerScr').style.backgroundColor = 'white';
         else
             document.getElementById('HpInnerScr').style.backgroundColor = '#393737';
       });
+      
   return (
     <>
         <div id="HpScr" className='noSpacing'>
             <div id="HpInnerScr">
                 <div id="HpHeading">
-                    <h1>{props.HpHeading}</h1>
+                    <h1>{heading}</h1>
                 </div>
                 <div id="HpSections">
                     <div id="HpLeftSec">

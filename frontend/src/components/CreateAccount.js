@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
 
 function CreateAccount(props) {
-    props.setHpHeading("Enter your Details");
+
     const nav = useNavigate();
+    const dispatch = useDispatch();
+    const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
+    actionHeading("Enter your Details");
+
     useEffect(()=>{
         props.setDisableBtn(true);
       },[])
+      
     const sendData = async() =>{
         try{
             document.querySelector('.invalidDetails').innerHTML='';

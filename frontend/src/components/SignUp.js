@@ -1,13 +1,21 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { authFunc } from './HelperFunc';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
 
 function SignUp(props) {
+
     const nav = useNavigate();
-    props.setHpHeading('Sign Up to Link your Bank Account')
+    const dispatch = useDispatch();
+    const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
+    actionHeading("Sign Up to Link your Bank Account");
+
     useEffect(()=>{
         props.setDisableBtn(true);
       },[])
+      
   return (
     <>
         <div id="HpLeftContent">
