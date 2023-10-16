@@ -15,13 +15,7 @@ import MiniStatement from './components/MiniStatement';
 
 
 function App() {
-  const [HpHeading, setHeading] = useState('');
-  const [disabledBtn, setDisableBtn] = useState(true);
-  const [accNo, setAccNo] = useState(null);
   const [details,setDetails] = useState(null);
-  const changeHeading = (heading) =>{
-      setHeading(heading);
-  }
   const [mode,setMode] = useState('light');
   const [navMode,setNavMode] = useState({navBg: 'bg-light', nav: 'navbar-light', navText: 'text-bg-light' })
   const changeMode = () =>{
@@ -40,30 +34,19 @@ function App() {
     setMode(mode == 'light' ? 'dark':'light');
   }
 
-  const disableBtn = (items,btn) =>{
-      setDisableBtn(false);
-      document.querySelectorAll('.'+items + ' input').forEach(element=>{
-          if(element.value=='')
-          {
-              setDisableBtn(true);
-              return;
-          }
-      })
-  }
-
   return (
     <>
       <BrowserRouter>
           <Routes>
-            <Route path='/' element={<HomePage mode={mode} ele={<HomePageContent setHpHeading={changeHeading}/>} HpHeading={HpHeading}/>}></Route>
-            <Route path='/login' element={<HomePage mode={mode} ele={<Login setDetails={setDetails} setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} setHpHeading={changeHeading} disableBtn={disableBtn}/>} HpHeading={HpHeading}/>}></Route>
-            <Route path='/signup' element={<HomePage mode={mode} ele={<SignUp setDetails={setDetails} setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} setHpHeading={changeHeading} disableBtn={disableBtn}/>}  HpHeading={HpHeading}/>}></Route>
-            <Route path='/create' element={<HomePage mode={mode} ele={<CreateAccount setAccNo={setAccNo} setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} setHpHeading={changeHeading} disableBtn={disableBtn}/>}  HpHeading={HpHeading}/>}></Route>
-            <Route path='/accountNo' element={<HomePage mode={mode} ele={<AccountDisplay setHpHeading={changeHeading} accNo={accNo}/>}  HpHeading={HpHeading}/>}></Route>
+            <Route path='/' element={<HomePage mode={mode} ele={<HomePageContent/>}/>}></Route>
+            <Route path='/login' element={<HomePage mode={mode} ele={<Login setDetails={setDetails}/>}/>}></Route>
+            <Route path='/signup' element={<HomePage mode={mode} ele={<SignUp setDetails={setDetails}/>}/>}></Route>
+            <Route path='/create' element={<HomePage mode={mode} ele={<CreateAccount/>}/>}></Route>
+            <Route path='/accountNo' element={<HomePage mode={mode} ele={<AccountDisplay/>}/>}></Route>
             <Route path='/user' element={<UserDashboard mode={mode} setMode={changeMode} navMode={navMode}/>}></Route> 
             <Route path='/user/profile' element={<UserProfile details={details}/>}></Route> 
             <Route path='/user/balance' element={<BalanceLeft details={details}/>}></Route> 
-            <Route path='/user/transfer' element={<MakeTransaction setDetails={setDetails} details={details} setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} disableBtn={disableBtn}/>}></Route> 
+            <Route path='/user/transfer' element={<MakeTransaction setDetails={setDetails} details={details}/>}></Route> 
             <Route path='/user/miniStatement' element={<MiniStatement details={details}/>}></Route> 
           </Routes>
     </BrowserRouter>

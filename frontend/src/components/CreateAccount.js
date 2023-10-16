@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
@@ -8,11 +8,12 @@ function CreateAccount(props) {
 
     const nav = useNavigate();
     const dispatch = useDispatch();
-    const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
-    actionHeading("Enter your Details");
+    const disableBtn = useSelector(state=>state.disableBtn);
+    const y = bindActionCreators(actionCreators,dispatch); 
+    y.actionHeading("Enter your Details");
 
     useEffect(()=>{
-        props.setDisableBtn(true);
+        y.disableButton();
       },[])
       
     const sendData = async() =>{
@@ -35,11 +36,13 @@ function CreateAccount(props) {
             if(rsp.status==200)
             {
                 alert(data.msg);
-                props.setAccNo(data.accountNo);
+                console.log(x)
+                y.setAccountNo(data.accountNo);
                 nav('/accountNo')
             }
         }
-        catch{
+        catch(err){
+            console.log(err)
             console.log('Internal Server Error');
         }
     }
@@ -49,11 +52,11 @@ function CreateAccount(props) {
         <div className="invalidDetails"></div>
         <div className='userDetails'>
             <span>Name : </span>
-            <input type="text" placeholder='Enter your name' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="text" placeholder='Enter your name' onChange={()=>{y.checkButton('userDetails')}}/>
         </div>
         <div className='userDetails'>
             <span>Address : </span>
-            <input type="text" placeholder='Enter your address' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="text" placeholder='Enter your address' onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Gender : </span>
@@ -61,21 +64,21 @@ function CreateAccount(props) {
         </div>
         <div className='userDetails'>
             <span>Date of Birth : </span>
-            <input type="date" onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="date" onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Phone No. : </span>
-            <input type="number" placeholder='Enter your phone number' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="number" placeholder='Enter your phone number' onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Email : </span>
-            <input type="email" placeholder='Enter your email' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="email" placeholder='Enter your email' onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Amount : </span>
-            <input type="number" placeholder='Enter your initial amount' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="number" placeholder='Enter your initial amount' onChange={()=>y.checkButton('userDetails')}/>
         </div>
-        <button onClick={sendData} className='btn' id='createAcBtn' disabled={props.disabledBtn}>Submit</button>
+        <button onClick={sendData} className='btn' id='createAcBtn' disabled={disableBtn}>Submit</button>
     </div>
   )
 }
