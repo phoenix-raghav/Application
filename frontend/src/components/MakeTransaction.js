@@ -20,7 +20,7 @@ function MakeTransaction() {
 
   return (
     <>
-        <div id='MTScr'>
+        {/* <div id='MTScr'>
             <div id='MTLeftSec'>
                 <div>
                     <div className="invalidDetails"></div>
@@ -34,6 +34,27 @@ function MakeTransaction() {
             <div id='MTRightSec'>
                 <img src="https://cdn4.vectorstock.com/i/1000x1000/89/73/colorful-background-transaction-in-cash-vector-15208973.jpg" alt="Error Loading Image" />
             </div>
+        </div> */}
+
+        <div id='MTScr'>
+          <div id="MTTop">
+            <div id="MTTopBar">Payment Details</div>
+            <div id='MTMid'>
+              <div id="MTLeft"><img src={`${process.env.PUBLIC_URL}/MT1.png`} alt="" /></div>
+              <div id="MTRight">
+                <div id="MTLeftSec">
+                  <div id='MTLeftSecBrdr'>
+                      <div className="invalidDetails"></div>
+                      <div className='MTInputs'><span>Account No. </span> : <input type="number" placeholder='Enter account number' onChange={()=>x.checkButton('MTInputs')}/></div>
+                      <div className='MTInputs'><span>Username </span> : <input type="text" placeholder='Enter username' onChange={()=>x.checkButton('MTInputs')}/></div>
+                      <div className='MTInputs'><span>Amount </span> : <input type="number" placeholder='Enter amount' onChange={()=>x.checkButton('MTInputs')}/></div>
+                      <div className='MTInputs'><span>Password </span> : <input type="text" placeholder='Enter password' onChange={()=>x.checkButton('MTInputs')}/></div>
+                      <div className='MTInputs'><button className='btn' id='payBtn' disabled={disableBtn} onClick={()=>{makeTransaction('/transaction',user)}}>Pay</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </>
   )

@@ -41,7 +41,7 @@ function CreateAccount() {
             }
         }
         catch(err){
-            console.log('Internal Server Error');
+            console.log('Internal server error');
         }
     }
 

@@ -24,7 +24,7 @@ Router.post('/signup',[body('password','Password should contain atleast 3 charac
         return res.status(200).json({msg:'User Registered Successfully :)', body:user, authToken: token});
     }
     catch{
-        return res.status(500).json({msg: 'Internal Server Error'});
+        return res.status(500).json({msg: 'Internal server error'});
     }
 })
 Router.post('/login',async(req,res)=>{
@@ -37,7 +37,7 @@ Router.post('/login',async(req,res)=>{
         return res.status(200).json({msg:'Logged In Successfully :)', body: user, authToken: token});
     }
     catch{
-        return res.status(500).json({msg: 'Internal Server Error'});
+        return res.status(500).json({msg: 'Internal server error'});
     }
 })
 Router.post('/createAccount',[body('phoneNo','Please enter a valid Phone Number').isLength({min:10, max:10}),[body('email','Please enter a valid email').isEmail()]],async(req,res)=>{
@@ -60,7 +60,7 @@ Router.post('/createAccount',[body('phoneNo','Please enter a valid Phone Number'
         return res.status(200).json({msg:'Account created Successfully :)', accountNo: acc[0].accountNo+1});
     }
     catch(err){
-        return res.status(500).json({msg: 'Internal Server Error'});
+        return res.status(500).json({msg: 'Internal server error'});
     }
 })
 
@@ -73,7 +73,7 @@ Router.post('/getUser',verifyToken,async(req,res)=>{
         }
     }
     catch{
-        return res.status(500).json({msg: 'Internal Server Error'});
+        return res.status(500).json({msg: 'Internal server error1111111111111'});
     }
 })
 export default Router;

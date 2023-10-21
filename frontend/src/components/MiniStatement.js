@@ -9,6 +9,7 @@ function MiniStatement() {
 
     const nav = useNavigate();
     const user = useSelector(state=>state.userDetails);
+    const {mode} = useSelector(state=>state.mode);
     const dispatch = useDispatch();
     const x = bindActionCreators(actionCreators,dispatch);
     x.setUserDetails(nav);
@@ -18,7 +19,7 @@ function MiniStatement() {
         setList(lists);
     }
     useEffect(()=>{
-        getTransList('/transaction/getTransList',user?.userName, listSet);
+            getTransList('/transaction/getTransList',user?.userName, listSet);
     },[user]);
 
   return (
@@ -26,9 +27,9 @@ function MiniStatement() {
         <div id="MSScr">
             <div id='MSLeftSec'>
                 <div>
-                <table className="table table-striped table-dark">
+                <table className={`table table-striped ${mode=='light'?'':'table-dark'}`}>
                     <thead>
-                        <tr>
+                        <tr className='table-active'>
                         <th scope="col">#</th>
                         <th scope="col">Account No.</th>
                         <th scope="col">UserName</th>

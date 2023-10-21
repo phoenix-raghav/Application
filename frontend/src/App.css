@@ -1,5 +1,6 @@
 body{
-  background-color: rgb(234, 201, 234);
+  /* background-color: rgb(234, 201, 234); */
+  background-color: white;
 }
 .noSpacing{
   padding: 0;
@@ -157,6 +158,7 @@ body{
   color: red;
   font-size: 25px;
   height: 40px;
+  margin: 0px;
 }
 #dispAccNo{
   height: 100%;
@@ -429,7 +431,7 @@ body{
   border-radius: 240px;
 }
 #MTLeftSec div{
-  margin: 20px;
+  margin: 30px;
   text-align: center;
 }
 #MTLeftSec span{
@@ -460,4 +462,51 @@ body{
 }
 th, tr{
   width: 10vw;
+}
+
+#MTTop{
+  height: 30vh;
+  background-image: url("../public/MT2.png");
+  background-repeat: no-repeat;
+  background-size: 350px;
+  background-position: -105px -85px;
+}
+#MTTopBar{
+  height: 12vh;
+  width: 100vw;
+  border-radius: 0 0 20px 20px;
+  border: 1px solid black;
+  background-color: silver;
+  opacity: 0.8;
+  font-size: 55px;
+  font-family: serif;
+  text-align: center;
+  color: blue;
+  font-weight: bold;
+}
+#MTMid{
+  display: flex;
+}
+#MTLeft{
+  width: 45vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  position: relative;
+  left: 20px;
+}
+#MTRight{
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+#MTLeftSecBrdr{
+  border: 2px solid blue;
+  border-radius: 25px;
+  height: 65vh;
+  width: 37vw;
+  box-shadow: 10px 10px 15px #888888;
 }

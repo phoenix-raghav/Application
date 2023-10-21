@@ -39,7 +39,8 @@ export const changeMode = (state=initialMode, action)=>{
     switch(action.type)
     {
         case 'dark': {
-            document.body.style.backgroundColor = 'rgb(234, 201, 234)';
+            document.body.style.backgroundColor = 'white';
+            // document.body.style.backgroundColor = 'rgb(234, 201, 234)';
             document.body.style.color = 'black';
             return {
                 mode : 'light',navBg: 'bg-light', nav: 'navbar-light', navText: 'text-bg-light' 

@@ -22,7 +22,7 @@ Router.post('/',async(req,res)=>{
         return res.status(200).json({msg:'Transaction Successful :)'});
     }
     catch(err){
-        return res.status(500).json({msg: 'Internal Server Error'});
+        return res.status(500).json({msg: 'Internal server error'});
     }
 })
 
@@ -33,7 +33,7 @@ Router.post('/getTransList',async(req,res)=>{
     }
     catch(err){
         console.log(err)
-        return res.status(500).json({msg: 'Internal Server Error'});
+        return res.status(500).json({msg: 'Internal server error'});
     }
 })
 export default Router;

@@ -26,8 +26,8 @@ export async function authFunc (endpoint, isSignUp,nav, setUserDetails){
         }
     }
     catch{
-        console.log('Internal Server Error');
-        alert('Internal Server Error')
+        console.log('Internal server error');
+        alert('Internal server error')
     }
 }
 export async function makeTransaction(endpoint, user){
@@ -60,8 +60,8 @@ export async function makeTransaction(endpoint, user){
         }
     }
     catch{
-        console.log('Internal Server Error');
-        alert('Internal Server Error')
+        console.log('Internal server error');
+        alert('Internal server error')
     }
 }
 export async function getTransList(endpoint, userName, setList){
@@ -82,7 +82,7 @@ export async function getTransList(endpoint, userName, setList){
     }
     catch(err){
         console.log(err);
-        alert('Internal Server Error1')
+        alert('Internal server error1')
     }
 }
 
@@ -105,8 +105,8 @@ export async function getUser(nav){
         }
     }
     catch{
-        console.log('Internal Server Error');
-        alert('Internal Server Error')
+        console.log('Internal server error');
+        alert('Internal server error')
     }
 }
 
