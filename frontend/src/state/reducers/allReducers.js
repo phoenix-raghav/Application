@@ -20,7 +20,6 @@ export const disableButton = (state=true, action)=>{
             document.querySelectorAll('.'+action.items + ' input').forEach(element=>{
                 if(element.value=='')
                 {
-                    console.log('object')
                     return flag = true;
                 }
             })
@@ -53,6 +52,13 @@ export const changeMode = (state=initialMode, action)=>{
                 mode : 'dark',navBg: 'bg-dark', nav: 'navbar-dark', navText: 'text-bg-dark' 
             };
         }
+        default: return state;
+    }
+}
+export const userDetails = (state=null, action)=>{
+    switch(action.type)
+    {
+        case 'setUserDetails': return action.payload ? action.payload : null;
         default: return state;
     }
 }

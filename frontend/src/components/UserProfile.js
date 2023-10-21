@@ -1,13 +1,22 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { verifyUser } from './HelperFunc'
+import { getUser } from './HelperFunc'
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
 
 
-function UserProfile(props) {
+function UserProfile() {
+
     const nav = useNavigate();
+    const user = useSelector(state=>state.userDetails)
+    const dispatch = useDispatch();
+    const x = bindActionCreators(actionCreators,dispatch);
+
     useEffect(()=>{
-      verifyUser(nav);
-    })
+        x.setUserDetails(nav);
+    },[])
+
   return (
     <>
         <div id='userProfScr'>
@@ -18,16 +27,16 @@ function UserProfile(props) {
             </div>
             <div id="UPDetails">
                 <div>
-                    <p><b>Name : </b>{props.details.name} </p>
-                    <p><b>Address : </b>{props.details.address} </p>
-                    <p><b>Phone No. : </b>{props.details.phoneNo} </p>
-                    <p><b>Date of Birth : </b>{props.details.dob} </p>
+                    <p><b>Name : </b>{user?.name} </p>
+                    <p><b>Address : </b>{user?.address} </p>
+                    <p><b>Phone No. : </b>{user?.phoneNo} </p>
+                    <p><b>Date of Birth : </b>{user?.dob} </p>
                 </div>
                 <div>
-                    <p><b>Email : </b>{props.details.email} </p>
-                    <p><b>Gender : </b>{props.details.gender} </p>
-                    <p><b>Account No. : </b>{props.details.accountNo} </p>
-                    <p><b>Username : </b>{props.details.userName} </p>
+                    <p><b>Email : </b>{user?.email} </p>
+                    <p><b>Gender : </b>{user?.gender} </p>
+                    <p><b>Account No. : </b>{user?.accountNo} </p>
+                    <p><b>Username : </b>{user?.userName} </p>
                 </div>
             </div>
         </div>

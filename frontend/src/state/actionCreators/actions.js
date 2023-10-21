@@ -1,3 +1,5 @@
+import { getUser } from "../../components/HelperFunc"
+
 export const actionHeading = (heading) =>{
     return dispatch => {
         dispatch({
@@ -40,6 +42,15 @@ export const changeMode = (mode) =>{
     return dispatch => {
         dispatch({
             type: mode,
+        })
+    }
+}
+export const setUserDetails = (nav) =>{
+    return async(dispatch) => {
+        const user = await getUser(nav);
+        dispatch({
+            type: 'setUserDetails',
+            payload: user
         })
     }
 }

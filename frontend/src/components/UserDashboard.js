@@ -5,14 +5,10 @@ import Operations from './Operations'
 import News from './News'
 import SocialMediaTags from './SocialMediaTags'
 import { useNavigate } from 'react-router-dom'
-import { verifyUser } from './HelperFunc'
 
 function UserDashboard() {
 
   const nav = useNavigate();
-  useEffect(()=>{
-    verifyUser(nav);
-  })
   
   return (
     <>

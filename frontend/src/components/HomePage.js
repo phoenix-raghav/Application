@@ -14,7 +14,7 @@ function HomePage(props) {
 
     useEffect (() =>{
           document.getElementById('HpInnerScr').style.backgroundColor = mode == 'light' ? 'white' : '#393737';
-          document.getElementById('HpScr').style.backgroundColor = mode == 'light' ? 'white' : 'black';
+          document.getElementById('HpScr').style.backgroundColor = mode == 'light' ? 'rgb(234, 201, 234)' : '#25292d';
       });
       
   return (

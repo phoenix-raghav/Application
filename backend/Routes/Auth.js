@@ -60,12 +60,20 @@ Router.post('/createAccount',[body('phoneNo','Please enter a valid Phone Number'
         return res.status(200).json({msg:'Account created Successfully :)', accountNo: acc[0].accountNo+1});
     }
     catch(err){
-        console.log(err)
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 })
 
-Router.post('/verify',verifyToken,async(req,res)=>{
-    return res.status(200).json({msg:"Authorized :)"})
+Router.post('/getUser',verifyToken,async(req,res)=>{
+    try{
+        if(req.userName)
+        {
+            const user = await User.findOne({userName:req.userName});
+            return res.status(200).json({msg:"User Found", body: user});
+        }
+    }
+    catch{
+        return res.status(500).json({msg: 'Internal Server Error'});
+    }
 })
 export default Router;

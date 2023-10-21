@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { getTransList } from './HelperFunc';
 import { useNavigate } from 'react-router-dom';
-import { verifyUser } from './HelperFunc'
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
 
-function MiniStatement(props) {
+function MiniStatement() {
+
     const nav = useNavigate();
+    const user = useSelector(state=>state.userDetails);
+    const dispatch = useDispatch();
+    const x = bindActionCreators(actionCreators,dispatch);
+    x.setUserDetails(nav);
+
     const [list,setList] = useState(null);
     const listSet =(lists)=>{
         setList(lists);
     }
     useEffect(()=>{
-        verifyUser(nav);
-        getTransList('/transaction/getTransList',props.details.userName, listSet);
-    },[]);
+        getTransList('/transaction/getTransList',user?.userName, listSet);
+    },[user]);
 
   return (
     <>
@@ -35,10 +42,10 @@ function MiniStatement(props) {
                         {list!=null && Array.from(list).map((element,index)=>{
                             return <tr>
                                 <th scope="row">{index+1}</th>
-                                <td>{props.details.userName == element.creditor ? element.depAccountNo : element.credAccountNo}</td>
-                                <td>{props.details.userName == element.creditor ? element.depositor : element.creditor}</td>
+                                <td>{user?.userName == element.creditor ? element.depAccountNo : element.credAccountNo}</td>
+                                <td>{user?.userName == element.creditor ? element.depositor : element.creditor}</td>
                                 <td>{element.amount}</td>
-                                <td>{props.details.userName == element.creditor ? 'Cr' : 'Dr'}</td>
+                                <td>{user?.userName == element.creditor ? 'Cr' : 'Dr'}</td>
                                 <td>{element.date}</td>
                                 <td>{element.time}</td>
                             </tr>

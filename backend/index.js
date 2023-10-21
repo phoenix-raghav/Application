@@ -15,8 +15,7 @@ app.use((req,res,next)=>{
 
 app.use(express.json());
 app.use('/',Auth);
-app.use('/transaction',verifyToken);
-app.use('/transaction',Transactions);
+app.use('/transaction/',Transactions);
 
 app.listen(port,()=>{
     console.log('Server is running on port ' + port);

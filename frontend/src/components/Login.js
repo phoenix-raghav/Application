@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators } from '../state/actionCreators';
 import { bindActionCreators } from 'redux';
 
-function Login(props) {
+function Login() {
 
   const nav = useNavigate();
   const disableBtn = useSelector(state=>state.disableBtn);
   const dispatch = useDispatch();
-  const {actionHeading, disableButton, checkButton} = bindActionCreators(actionCreators,dispatch); 
+  const {actionHeading, disableButton, checkButton, setUserDetails} = bindActionCreators(actionCreators,dispatch); 
   actionHeading("Login to view your Account Details");
   useEffect(()=>{
     disableButton();
@@ -28,7 +28,7 @@ function Login(props) {
                 <span>Password : </span>
                 <input type="password" placeholder='Enter your password' onChange={()=>checkButton('loginCredentials')}/>
             </div>
-            <button className='btn' id='loginBtn' onClick={()=>{authFunc('/login',false,nav,props.setDetails)}} disabled={disableBtn}>Login</button>
+            <button className='btn' id='loginBtn' onClick={()=>{authFunc('/login',false,nav,setUserDetails)}} disabled={disableBtn}>Login</button>
             <p>Haven't linked yet, Don't worry <Link to="/signup">Sign Up</Link></p>
         </div>
     </>

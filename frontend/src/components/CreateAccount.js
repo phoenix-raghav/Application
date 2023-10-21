@@ -36,13 +36,11 @@ function CreateAccount() {
             if(rsp.status==200)
             {
                 alert(data.msg);
-                console.log(x)
                 y.setAccountNo(data.accountNo);
                 nav('/accountNo')
             }
         }
         catch(err){
-            console.log(err)
             console.log('Internal Server Error');
         }
     }

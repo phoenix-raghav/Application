@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { verifyUser } from './HelperFunc'
+import { actionCreators } from '../state/actionCreators';
+import { bindActionCreators } from 'redux';
 
-function BalanceLeft(props) {
+function BalanceLeft() {
+
   const nav = useNavigate();
+  const user = useSelector(state=>state.userDetails);
+  const dispatch = useDispatch();
+  const x = bindActionCreators(actionCreators,dispatch);
+
   useEffect(()=>{
-    verifyUser(nav);
-  })
+      x.setUserDetails(nav);
+  },[])
+
   return (
     <>
         <div id='BLScr'>
@@ -14,7 +22,7 @@ function BalanceLeft(props) {
                 <img src="https://cdn.pixabay.com/photo/2021/06/27/12/40/e-wallet-6368676_1280.png" alt="Error Loading Image" />
             </div>
             <div id='BLBalance'>
-                <p>Your Balance is : {props.details.balance}</p>
+                <p>Your Balance is : {user?.balance}</p>
             </div>
         </div>
     </>

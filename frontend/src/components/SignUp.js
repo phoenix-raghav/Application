@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
 
-function SignUp(props) {
+function SignUp() {
 
     const nav = useNavigate();
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function SignUp(props) {
                 <span>Password : </span>
                 <input type="password" placeholder='Enter your password' onChange={()=>x.checkButton('loginCredentials')}/>
             </div>
-            <button className='btn' onClick={()=>{authFunc('/signUp',true,nav,props.setDetails)}} id='signUpBtn' disabled={disableBtn}>Sign Up</button>
+            <button className='btn' onClick={()=>{authFunc('/signUp',true,nav,x.setUserDetails)}} id='signUpBtn' disabled={disableBtn}>Sign Up</button>
             <p><Link to="/login">Login</Link></p>
         </div>
     </>

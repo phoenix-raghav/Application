@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
 import { makeTransaction } from './HelperFunc';
 import { useNavigate } from 'react-router-dom';
-import { verifyUser } from './HelperFunc'
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators } from '../state/actionCreators';
 import { bindActionCreators } from 'redux';
 
-function MakeTransaction(props) {
+function MakeTransaction() {
 
     const nav = useNavigate();
     const dispatch = useDispatch();
     const disableBtn = useSelector(state=>state.disableBtn);
+    const user = useSelector(state=>state.userDetails);
     const x = bindActionCreators(actionCreators,dispatch); 
-
+    
     useEffect(()=>{
-      verifyUser(nav);
+      x.setUserDetails(nav);
       x.disableButton();
     },[])
 
@@ -28,7 +28,7 @@ function MakeTransaction(props) {
                     <div className='MTInputs'><span>Username </span> : <input type="text" placeholder='Enter username' onChange={()=>x.checkButton('MTInputs')}/></div>
                     <div className='MTInputs'><span>Amount </span> : <input type="number" placeholder='Enter amount' onChange={()=>x.checkButton('MTInputs')}/></div>
                     <div className='MTInputs'><span>Password </span> : <input type="text" placeholder='Enter password' onChange={()=>x.checkButton('MTInputs')}/></div>
-                    <div className='MTInputs'><button className='btn' id='payBtn' disabled={disableBtn} onClick={()=>{makeTransaction('/transaction',props.details, props.setDetails)}}>Pay</button></div>
+                    <div className='MTInputs'><button className='btn' id='payBtn' disabled={disableBtn} onClick={()=>{makeTransaction('/transaction',user)}}>Pay</button></div>
                 </div>
             </div>
             <div id='MTRightSec'>

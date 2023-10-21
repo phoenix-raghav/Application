@@ -5,5 +5,6 @@ export const rootReducer = combineReducers({
     heading: reducers.changeHeading,
     disableBtn: reducers.disableButton,
     accountNo: reducers.changeAccNo,
-    mode : reducers.changeMode
+    mode : reducers.changeMode,
+    userDetails : reducers.userDetails
 })

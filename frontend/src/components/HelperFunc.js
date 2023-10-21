@@ -1,5 +1,5 @@
 
-export async function authFunc (endpoint, isSignUp,nav,setDetails){
+export async function authFunc (endpoint, isSignUp,nav, setUserDetails){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
         const x = Array.from(document.querySelectorAll('.loginCredentials input'));
@@ -20,8 +20,8 @@ export async function authFunc (endpoint, isSignUp,nav,setDetails){
         if(rsp.status==200)
         {
             alert(data.msg);
-            setDetails(data.body);
             localStorage.setItem('authToken',data.authToken);
+            await setUserDetails(nav);
             nav('/user');
         }
     }
@@ -30,18 +30,18 @@ export async function authFunc (endpoint, isSignUp,nav,setDetails){
         alert('Internal Server Error')
     }
 }
-export async function makeTransaction(endpoint, details, setDetails){
+export async function makeTransaction(endpoint, user){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
         const x = Array.from(document.querySelectorAll('.MTInputs input'));
         const url = 'http://127.0.0.1:8080' + endpoint;
 
-        if(x[2].value>details.balance)
+        if(x[2].value>user.balance)
         {
             document.querySelector('.invalidDetails').innerHTML='Balance not sufficient';
             return;
         }    
-        const body = {credAccNo: x[0].value, depAccNo: details.accountNo, credUserName: x[1].value, depUserName:details.userName, amount: x[2].value, depPassword:x[3].value}
+        const body = {credAccNo: x[0].value, depAccNo: user.accountNo, credUserName: x[1].value, depUserName:user.userName, amount: x[2].value, depPassword:x[3].value}
         const params = {
             method: "POST",
             headers : {'Content-Type': 'application/json'},
@@ -52,14 +52,10 @@ export async function makeTransaction(endpoint, details, setDetails){
         if(rsp.status==400)
             document.querySelector('.invalidDetails').innerHTML=data.msg;
         if(rsp.status==500)
-        alert(data.msg);
+            alert(data.msg);
         if(rsp.status==200)
         {
             alert(data.msg);
-            if(details.userName !== x[1].value)
-                setDetails((prevState,amount)=>{
-                    return {...prevState,balance:details.balance-x[2].value}
-                });
             document.querySelector('.invalidDetails').innerHTML=data.msg;
         }
     }
@@ -80,32 +76,32 @@ export async function getTransList(endpoint, userName, setList){
         const rsp = await fetch(url,params);
         const data = await rsp.json();  
         if(rsp.status==500)
-        {
             alert(data.msg);
-        }
         if(rsp.status==200)
-        {
             setList(data.list);
-        }
     }
-    catch{
-        console.log('Internal Server Error');
-        alert('Internal Server Error')
+    catch(err){
+        console.log(err);
+        alert('Internal Server Error1')
     }
 }
 
-export async function verifyUser(nav){
+export async function getUser(nav){
     try{
-        const url = 'http://127.0.0.1:8080/verify';
+        const url = 'http://127.0.0.1:8080/getUser';
 
         const params = {
             method: "POST",
             headers : {'Content-Type': 'application/json','authToken':localStorage.getItem('authToken')}
         }
         const rsp = await fetch(url,params);
+        const data = await rsp.json();
         if(rsp.status==401)
         {
             nav('/login');
+        }
+        else if(rsp.status==200){
+            return data.body;
         }
     }
     catch{
