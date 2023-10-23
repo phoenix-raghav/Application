@@ -8,7 +8,10 @@ function AccountDisplay() {
   const dispatch = useDispatch();
   const accNo = useSelector(state=>state.accountNo);
   const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
-  actionHeading("Account Details");
+  
+  useEffect(()=>{
+    actionHeading("Account Details");
+  },[]);
   
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -10,13 +10,13 @@ function CreateAccount() {
     const dispatch = useDispatch();
     const disableBtn = useSelector(state=>state.disableBtn);
     const y = bindActionCreators(actionCreators,dispatch); 
-    y.actionHeading("Enter your Details");
-
+    
     useEffect(()=>{
+        y.actionHeading("Enter your Details");
         y.disableButton();
       },[])
       
-    const sendData = async() =>{
+    const sendData = useCallback(async() =>{
         try{
             document.querySelector('.invalidDetails').innerHTML='';
             const x = Array.from(document.querySelectorAll('.userDetails input'));
@@ -43,7 +43,7 @@ function CreateAccount() {
         catch(err){
             console.log('Internal server error');
         }
-    }
+    },[])
 
   return (
     <div id='CreateAccount'>

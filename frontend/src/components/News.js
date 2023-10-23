@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { newsItems } from './HelperFunc';
 
 function News() {
@@ -8,7 +8,7 @@ function News() {
         toggleNewsItems();
     },[]);
 
-    const toggleNewsItems = (direc) =>{
+    const toggleNewsItems = useCallback((direc) =>{
         Array.from(document.getElementsByClassName('newsItems')).forEach(element=>{
             element.remove(); 
         })
@@ -40,7 +40,7 @@ function News() {
             document.querySelector('#forward div').style.display='none';
         if(start==4)
             document.querySelector('#backward div').style.display='none';
-    }
+    })
 
   return (
     <>

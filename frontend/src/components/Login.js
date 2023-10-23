@@ -11,8 +11,8 @@ function Login() {
   const disableBtn = useSelector(state=>state.disableBtn);
   const dispatch = useDispatch();
   const {actionHeading, disableButton, checkButton, setUserDetails} = bindActionCreators(actionCreators,dispatch); 
-  actionHeading("Login to view your Account Details");
   useEffect(()=>{
+    actionHeading("Login to view your Account Details");
     disableButton();
   },[])
   

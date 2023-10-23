@@ -11,10 +11,10 @@ function SignUp() {
     const dispatch = useDispatch();
     const disableBtn = useSelector(state=>state.disableBtn);
     const x = bindActionCreators(actionCreators,dispatch); 
-    x.actionHeading("Sign Up to Link your Bank Account");
-
+    
     useEffect(()=>{
         x.disableButton();
+        x.actionHeading("Sign Up to Link your Bank Account");
       },[])
       
   return (

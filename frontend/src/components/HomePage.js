@@ -11,12 +11,11 @@ function HomePage(props) {
 
     const heading = useSelector(state=> state.heading);
     const {mode} = useSelector(state=> state.mode);
-
     useEffect (() =>{
-          document.getElementById('HpInnerScr').style.backgroundColor = mode == 'light' ? 'white' : '#393737';
-          document.getElementById('HpScr').style.backgroundColor = mode == 'light' ? 'rgb(234, 201, 234)' : '#25292d';
-      });
-      
+        document.getElementById('HpInnerScr').style.backgroundColor = mode == 'light' ? 'white' : '#393737';
+        document.getElementById('HpScr').style.backgroundColor = mode == 'light' ? 'rgb(234, 201, 234)' : '#25292d';
+    },[mode]);
+    
   return (
     <>
         <div id="HpScr" className='noSpacing'>
@@ -27,13 +26,6 @@ function HomePage(props) {
                 <div id="HpSections">
                     <div id="HpLeftSec">
                         {props.ele}
-                            {/* <Routes>
-                                <Route path='/' element={<HomePageContent setHpHeading={changeHeading}/>}></Route>
-                                <Route path='/login' element={<Login setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} setHpHeading={changeHeading} disableBtn={disableBtn}/>}></Route>
-                                <Route path='/signup' element={<SignUp setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} setHpHeading={changeHeading} disableBtn={disableBtn}/>}></Route>
-                                <Route path='/create' element={<CreateAccount setDisableBtn={setDisableBtn} disabledBtn={disabledBtn} setHpHeading={changeHeading} disableBtn={disableBtn}/>}></Route>
-                                <Route path='/accountNo' element={<AccountDisplay setHpHeading={changeHeading}/>}></Route>
-                            </Routes> */}
                     </div>
                     <div id="HpRightSec">
                         <img src={process.env.PUBLIC_URL + '/HomePage_Logo.png'} alt="Error Loading Image" />

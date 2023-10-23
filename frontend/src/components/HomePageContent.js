@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import {actionCreators} from '../state/actionCreators/index'
@@ -8,7 +8,9 @@ function HomePageContent() {
 
   const dispatch = useDispatch();
   const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
-  actionHeading("Welcome to Robber's Bank");
+  useEffect(()=>{
+    actionHeading("Welcome to Robber's Bank");
+  },[]);
   
   return (
     <div id="HpLeftContent">
