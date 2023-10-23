@@ -333,9 +333,6 @@ body{
   font-size: 25px;
   text-align: center;
 }
-/* #userProfScr{
-  background-color: rgb(234, 201, 234);
-} */
 #userProfScr h1{
   font-size: 70px;
   font-style: italic;
@@ -350,20 +347,30 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 #UPImage p{
+  display: none;
+  height: 50px;
   text-align: center;
   font-weight: bolder;
   position: relative;
-  right: 240px;
+  bottom: 200px;
   color: blue;
   font-size: 30px;
 }
+#UPImage div{
+  height: 30px;
+}
+#imageInput{
+  display: none;
+}
 #UPImage img{
   display: block;
-  height: 35vh;
+  width: 23vw;
+  height: 50vh;
   border: 2px solid black;
-  border-radius: 120px;
+  border-radius: 180px;
   background-color: white;
 }
 #UPImage img:hover{
@@ -371,18 +378,25 @@ body{
   opacity: 0.5;
 }
 #UPDetails{
-  /* border: 2px solid black; */
   width: 70vw;
   margin: auto;
   display: flex;
+  background-color: azure;
 
 }
 #UPDetails div{
-  width: 50%;
+  font-family: 'Times New Roman', Times, serif;
+  margin: auto;
+  width: 80%;
 }
 #UPDetails p{
   margin: 40px 20px;
-  font-size: 25px;
+  font-size: 30px;
+}
+#UPDetails p span{
+  display: inline-block;
+  text-align: center;
+  width: 220px;
 }
 #BLScr{
   /* background-color: rgb(234, 201, 234); */
@@ -404,7 +418,7 @@ body{
   text-align: center;
   padding: 10px;
 }
-#MTScr, #MSScr{
+#MTScr{
   /* background-color: rgb(234, 201, 234); */
   height: 100vh;
   display: flex;
@@ -416,7 +430,7 @@ body{
   justify-content: center;
   align-items: center;
 }
-#MTLeftSec, #MSLeftSec{
+#MTLeftSec{
   width: 50vw;
   height: 70vh;
   /* border: 2px solid black; */
@@ -452,13 +466,12 @@ body{
   padding: 5px 30px;
   font-size: 25px;
 }
-#MSLeftSec{
-  width: 70vw;
-  padding: 10px;
-}
 #MSRightSec{
   width: 30vw;
   /* border: 2px solid black; */
+}
+table{
+  font-size: 20px;
 }
 th, tr{
   width: 10vw;
@@ -509,4 +522,78 @@ th, tr{
   height: 65vh;
   width: 37vw;
   box-shadow: 10px 10px 15px #888888;
+}
+#MSTop{
+  /* border: 2px solid black; */
+  background-image: url('../public/MiniStatementRoute.jpeg');
+  background-size:contain;
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#MSTop h1{
+  font-size: 65px;
+  font-weight: bold;
+  color: black;
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#MSTop img{
+  border: 2px solid black;
+  height: 50vh;
+  width: 25vw;
+  border-radius: 190px;
+}
+#MSEmoji{
+  height: 40vh;
+  width: 100vw;
+  text-align: center;
+}
+#MSEmoji img{
+  height: 40vh;
+}
+#MSTable{
+  width: 80vw;
+  text-align: center;
+  margin: auto;
+}
+#MSTable div{
+  border: 2px solid black;
+}
+#BLScr{
+  position: relative;
+}
+#BLScr::before{
+  content: '';
+  background-image: url('https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif');
+  background-size:contain;
+  height: 100vh;
+  opacity: 0.5;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.custom-row{
+  margin: 100px;
+}
+#userProfScr{
+  display: flex;
+}
+#UPLeft{
+  width: 50vw;
+  height: 100vh;
+}
+#UPRight{
+  width: 50vw;
+  height: 100vh;
+  background-image: url('https://i.guim.co.uk/img/media/a17dbf5a56492520382dc4c77450c2fdf2dc2ad8/136_0_2683_1611/master/2683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=ab5eefcf7706b06d71048acba6096410');
+  background-size: 50vw 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

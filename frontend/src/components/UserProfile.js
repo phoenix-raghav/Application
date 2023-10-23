@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getUser } from './HelperFunc'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
-
 
 function UserProfile() {
 
@@ -13,6 +12,26 @@ function UserProfile() {
     const dispatch = useDispatch();
     const x = bindActionCreators(actionCreators,dispatch);
 
+    const uploadImage = useCallback(()=>{
+        const img = document.getElementById('imageInput')
+        img.click();
+        img.addEventListener('change',getImage);
+    })
+
+    const getImage = useCallback(()=>{
+        const img = document.getElementById('imageInput')
+        if(img.files.length)
+        {
+            const file = img.files[0];
+            const url = URL.createObjectURL(file);
+            document.getElementById('UPImg').src = url;
+        }
+        
+    })
+    const displayText = useCallback((x)=>{
+        document.getElementById('UPBtn').style.display=x;
+    })
+
     useEffect(()=>{
         x.setUserDetails(nav);
     },[])
@@ -20,23 +39,28 @@ function UserProfile() {
   return (
     <>
         <div id='userProfScr'>
-            <h1>Robber's Bank Welcomes you</h1>
-            <div id='UPImage'>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1G2ye1gTauHDy5vh2qNCNyWvAKO_KpcYFgZ17--uBC1CjYuAoqYeC9rIVEQme_p6pjY&usqp=CAU" alt="Error Loading Image" />
-                {/* <p id='insertImage'>Click to change</p> */}
-            </div>
-            <div id="UPDetails">
-                <div>
-                    <p><b>Name : </b>{user?.name} </p>
-                    <p><b>Address : </b>{user?.address} </p>
-                    <p><b>Phone No. : </b>{user?.phoneNo} </p>
-                    <p><b>Date of Birth : </b>{user?.dob} </p>
+            <div id="UPLeft">
+                <div id="UPDetails">
+                    <div>
+                        <p><span><b>Name : </b></span>{user?.name} </p>
+                        <p><span><b>Address : </b></span>{user?.address} </p>
+                        <p><span><b>Phone No. : </b></span>{user?.phoneNo} </p>
+                        <p><span><b>Date of Birth : </b></span>{user?.dob} </p>
+                        <p><span><b>Email : </b></span>{user?.email} </p>
+                        <p><span><b>Gender : </b></span>{user?.gender} </p>
+                        <p><span><b>Account No. : </b></span>{user?.accountNo} </p>
+                        <p><span><b>Username : </b></span>{user?.userName} </p>
+                    </div>
                 </div>
-                <div>
-                    <p><b>Email : </b>{user?.email} </p>
-                    <p><b>Gender : </b>{user?.gender} </p>
-                    <p><b>Account No. : </b>{user?.accountNo} </p>
-                    <p><b>Username : </b>{user?.userName} </p>
+            </div>
+
+            <div id="UPRight">
+                <div id='UPImage'>
+                    <img id='UPImg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1G2ye1gTauHDy5vh2qNCNyWvAKO_KpcYFgZ17--uBC1CjYuAoqYeC9rIVEQme_p6pjY&usqp=CAU" alt="Error Loading Image" onMouseOver={()=>{displayText('block')}} onMouseOut={()=>{displayText('none')}} onClick={uploadImage}/>
+                    <div>
+                        <p id='UPBtn'>Click to change</p>
+                        <input type="file" name="image" id="imageInput" accept='image/*'/>
+                    </div>
                 </div>
             </div>
         </div>

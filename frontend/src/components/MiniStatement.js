@@ -29,7 +29,16 @@ function MiniStatement() {
   return (
     <>
         <div id="MSScr">
-            <div id='MSLeftSec'>
+            <div id="MSTop">
+                    <h1>All Transactions In One Place</h1>
+                    <img src="https://miro.medium.com/v2/resize:fit:1200/1*Y4uOirTNPvJbJj5_bSVFWw.png" alt="Error loading Image" />
+            </div>
+            <div id="MSEmoji">
+                {list.length==0 && <img src={process.env.PUBLIC_URL + '/Sad-Face-Emoji.png'} alt="Error Loading Image" />}
+                {list.length>0 && <img src={process.env.PUBLIC_URL + '/HappyEmoji.png'} alt="Error Loading Image" />}
+                
+            </div>
+            <div id='MSTable'>
                 <div>
                 {list.length==0 && <h1>No transactions yet</h1>}
                 {
@@ -63,9 +72,7 @@ function MiniStatement() {
                 }
                 </div>
             </div>
-            <div id='MSRightSec'>
-                <img src="https://miro.medium.com/v2/resize:fit:1200/1*Y4uOirTNPvJbJj5_bSVFWw.png" alt="Error loading Image" />
-            </div>
+            
         </div>
     </>
   )
