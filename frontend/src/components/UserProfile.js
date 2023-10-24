@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getUser } from './HelperFunc'
+import { getUser, updateDetails } from './HelperFunc'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
@@ -11,6 +11,7 @@ function UserProfile() {
     const user = useSelector(state=>state.userDetails)
     const dispatch = useDispatch();
     const x = bindActionCreators(actionCreators,dispatch);
+    const {mode} = useSelector(state=> state.mode);
 
     const uploadImage = useCallback(()=>{
         const img = document.getElementById('imageInput')
@@ -25,16 +26,21 @@ function UserProfile() {
             const file = img.files[0];
             const url = URL.createObjectURL(file);
             document.getElementById('UPImg').src = url;
+            updateDetails('/updateDetails',url);    
         }
-        
     })
     const displayText = useCallback((x)=>{
         document.getElementById('UPBtn').style.display=x;
     })
-
+    
+    
     useEffect(()=>{
         x.setUserDetails(nav);
-    },[])
+    },[])   
+    useEffect(()=>{
+        document.getElementById('UPDetails').style.backgroundColor = mode == 'light' ? 'azure' : '#393737';
+
+    },[mode])
 
   return (
     <>
@@ -56,7 +62,7 @@ function UserProfile() {
 
             <div id="UPRight">
                 <div id='UPImage'>
-                    <img id='UPImg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1G2ye1gTauHDy5vh2qNCNyWvAKO_KpcYFgZ17--uBC1CjYuAoqYeC9rIVEQme_p6pjY&usqp=CAU" alt="Error Loading Image" onMouseOver={()=>{displayText('block')}} onMouseOut={()=>{displayText('none')}} onClick={uploadImage}/>
+                    <img id='UPImg' src={user?.imageURL} alt="Error Loading Image" onMouseOver={()=>{displayText('block')}} onMouseOut={()=>{displayText('none')}} onClick={uploadImage}/>
                     <div>
                         <p id='UPBtn'>Click to change</p>
                         <input type="file" name="image" id="imageInput" accept='image/*'/>

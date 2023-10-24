@@ -5,6 +5,9 @@ const Schema = new mongoose.Schema({
     address: String,
     gender: String,
     dob: String,
+    imageURL: String,
+    password: String,
+    balance: Number,
     phoneNo: {
         type: Number,
         unique: true
@@ -21,8 +24,6 @@ const Schema = new mongoose.Schema({
         type: String,
         // unique: true
     },
-    password: String,
-    balance: Number
 })
 
 const User = mongoose.model('Users',Schema);

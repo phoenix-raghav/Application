@@ -1,4 +1,31 @@
+const makePOSTRequest = async(url,body) => {
+    const params = {
+        method: "POST",
+        headers : {'Content-Type': 'application/json', 'authToken': localStorage.getItem('authToken')},
+        body: JSON.stringify(body)
+    }
+    const rsp = await fetch(url,params);
+    const data = await rsp.json();
+    if(rsp.status==400)
+        document.querySelector('.invalidDetails').innerHTML=data.msg;
+    else if(rsp.status==500 || rsp.status==401)
+        alert(data.msg);
+    else if(rsp.status==200)
+        return data;
+}
 
+export async function updateDetails (endpoint, imageURL){
+    try{
+        const url = 'http://127.0.0.1:8080' + endpoint;
+        const body = {content : {imageURL: imageURL}}
+        const data = await makePOSTRequest(url, body);
+        alert(data.msg)
+    }
+    catch{
+        console.log('Internal server error');
+        alert('Internal server error')
+    }
+}
 export async function authFunc (endpoint, isSignUp,nav, setUserDetails){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
@@ -6,24 +33,12 @@ export async function authFunc (endpoint, isSignUp,nav, setUserDetails){
         const url = 'http://127.0.0.1:8080' + endpoint;
         const body =  isSignUp ? {accountNo: x[0].value, userName: x[1].value, password: x[2].value} : {userName: x[0].value, password: x[1].value};
 
-        const params = {
-            method: "POST",
-            headers : {'Content-Type': 'application/json'},
-            body: JSON.stringify(body)
-        }
-        const rsp = await fetch(url,params);
-        const data = await rsp.json();  
-        if(rsp.status==400)
-            document.querySelector('.invalidDetails').innerHTML=data.msg;
-        if(rsp.status==500)
-            alert(data.msg);
-        if(rsp.status==200)
-        {
-            alert(data.msg);
-            localStorage.setItem('authToken',data.authToken);
-            await setUserDetails(nav);
-            nav('/user');
-        }
+        const data = await makePOSTRequest(url,body);
+        if(!data)   return;
+        alert(data.msg);
+        localStorage.setItem('authToken',data.authToken);
+        await setUserDetails(nav);
+        nav('/user');
     }
     catch{
         console.log('Internal server error');
@@ -42,22 +57,10 @@ export async function makeTransaction(endpoint, user){
             return;
         }    
         const body = {credAccNo: x[0].value, depAccNo: user.accountNo, credUserName: x[1].value, depUserName:user.userName, amount: x[2].value, depPassword:x[3].value}
-        const params = {
-            method: "POST",
-            headers : {'Content-Type': 'application/json'},
-            body: JSON.stringify(body)
-        }
-        const rsp = await fetch(url,params);
-        const data = await rsp.json();  
-        if(rsp.status==400)
-            document.querySelector('.invalidDetails').innerHTML=data.msg;
-        if(rsp.status==500)
-            alert(data.msg);
-        if(rsp.status==200)
-        {
-            alert(data.msg);
-            document.querySelector('.invalidDetails').innerHTML=data.msg;
-        }
+        const data = await makePOSTRequest(url,body);
+        if(!data)   return;
+        alert(data.msg);
+        document.querySelector('.invalidDetails').innerHTML=data.msg;
     }
     catch{
         console.log('Internal server error');
@@ -68,17 +71,10 @@ export async function getTransList(endpoint, userName, setList){
     try{
         const url = 'http://127.0.0.1:8080' + endpoint;
 
-        const params = {
-            method: "POST",
-            headers : {'Content-Type': 'application/json'},
-            body: JSON.stringify({userName:userName})
-        }
-        const rsp = await fetch(url,params);
-        const data = await rsp.json();  
-        if(rsp.status==500)
-            alert(data.msg);
-        if(rsp.status==200)
-            setList(data.list);
+        const body = {userName:userName};
+        const data = await makePOSTRequest(url,body);
+        if(!data)   return;
+        setList(data.list);
     }
     catch(err){
         console.log(err);

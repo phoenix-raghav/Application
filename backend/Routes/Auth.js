@@ -55,7 +55,8 @@ Router.post('/createAccount',[body('phoneNo','Please enter a valid Phone Number'
         }
         acc = await AccountNo.find({accountNo: {$exists : true}});
         await AccountNo.updateOne({accountNo: acc[0].accountNo}, {accountNo: acc[0].accountNo+1});
-        user = User({name:body.name, address:body.address,gender:body.gender,dob:body.dob,phoneNo: body.phoneNo, email: body.email, accountNo: acc[0].accountNo+1, balance: body.balance});
+        const imageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1G2ye1gTauHDy5vh2qNCNyWvAKO_KpcYFgZ17--uBC1CjYuAoqYeC9rIVEQme_p6pjY&usqp=CAU";
+        user = User({name:body.name, address:body.address,gender:body.gender,dob:body.dob,phoneNo: body.phoneNo, email: body.email, accountNo: acc[0].accountNo+1, balance: body.balance, imageURL: imageURL});
         await user.save();
         return res.status(200).json({msg:'Account created Successfully :)', accountNo: acc[0].accountNo+1});
     }
@@ -63,17 +64,31 @@ Router.post('/createAccount',[body('phoneNo','Please enter a valid Phone Number'
         return res.status(500).json({msg: 'Internal server error'});
     }
 })
+Router.post('/updateDetails',verifyToken,async(req,res)=>{
+    try{
+        if(req.body.userName)
+        {
+            await User.updateOne({userName: req.body.userName},req.body.content);
+            return res.status(200).json({msg:"Details Updated"});
+        }
+        else    return res.status(401).json({msg:"UnAuthorized"});
+    }
+    catch{
+        return res.status(500).json({msg: 'Internal server error'});
+    }
+})
 
 Router.post('/getUser',verifyToken,async(req,res)=>{
     try{
-        if(req.userName)
+        if(req.body.userName)
         {
-            const user = await User.findOne({userName:req.userName});
+            const user = await User.findOne({userName:req.body.userName});
             return res.status(200).json({msg:"User Found", body: user});
         }
+        else    return res.status(401).json({msg:"UnAuthorized"});
     }
     catch{
-        return res.status(500).json({msg: 'Internal server error1111111111111'});
+        return res.status(500).json({msg: 'Internal server error'});
     }
 })
 export default Router;
