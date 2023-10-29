@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body{
   /* background-color: rgb(234, 201, 234); */
   background-color: white;
@@ -10,16 +15,20 @@ body{
   text-align: center;
 }
 .btn, .userActionBtn{
-  font-size: 17px;
+  font-size: 1rem;
   padding: 6px 10px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: rgb(94, 94, 211);
   color: white;
 }
+
+nav{
+  font-size: 1rem;
+}
 .userActionBtn{
-  margin: 0 10px;
-  padding: 4px 12px;
+  margin: 0 0.5rem;
+  padding: 0.2rem 0.7rem;
 }
 .btn:hover, .userActionBtn:hover{
   cursor: pointer;
@@ -156,8 +165,8 @@ body{
 }
 .invalidDetails{
   color: red;
-  font-size: 25px;
-  height: 40px;
+  font-size: 1.5rem;
+  height: 3rem;
   margin: 0px;
 }
 #dispAccNo{
@@ -168,23 +177,28 @@ body{
 #dispAccNo div{
   margin: 20px;
 }
-/* #userDbScreen{
-  background-color: rgb(234, 201, 234);
-} */
 #MidSec{
-  /* border: 2px solid black; */
-  height: 50vh;
   display: flex;
+  flex-wrap: wrap;
 }
 #MsLeftSec{
-  /* border: 2px solid yellow; */
-  width: 70vw;
-  height: 100%;
-  background-color: rgb(93, 95, 96);
-  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: baseline;
+  width: 70vw;
+  margin: 0;
+  height: 50vh;
+  overflow: auto;
+  background-color: rgb(93, 95, 96);
+  color: white;
+}
+marquee{
+  overflow: auto;
+}
+#MsLeftSec p{
+  width: fit-content;
+  font-size: 16px;
+  margin: 7px;
 }
 #MsLeftSec a{
   text-decoration: none;
@@ -195,8 +209,7 @@ body{
   color: black;
 }
 #MsRightSec{
-  /* border: 2px solid green; */
-  width: 30vw;
+  width: 28vw;
   height: 100%; 
   display: flex;
   align-items: center;
@@ -229,23 +242,28 @@ body{
   margin: 0;
 }
 #operations{
-  height: 50vh;
+  /* height: 50vh; */
+  padding: 30px 0;
   display: flex;
   justify-content: space-evenly;
+  text-align: center;
+  flex-wrap: wrap;
 }
 .operBox{
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+  min-width: fit-content;
+  /* border: 2px solid black ; */
 }
 .operBox img{
-  height: 30vh;
-  width: 15vw;
+  height: 240px;
+  width: 240px;
   border: 2px solid black;
-  border-radius: 110px;
+  border-radius: 150px;
 }
 .operBox h1{
+  font-size: 1.5rem;
   text-align: center;
 }
 .operBox:hover{
@@ -253,8 +271,7 @@ body{
   cursor: pointer;
 }
 #News{
-  /* border: 2px solid black; */
-  height: 50vh;
+  padding: 25px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -263,10 +280,12 @@ body{
   display: flex;
   width: 85vw;
 }
+.newsItemsLinks{
+  display: flex;
+  justify-content: center;
+}
 .newsItems{
-  height: 45vh;
-  margin: 0 30px;
-  width: 18vw;
+  width: 90%;
   border: 2px solid black;
   border-radius: 5px;
 }
@@ -276,34 +295,36 @@ body{
 }
 .newsItems img{
   border-radius: 5px;
-  height: 80%;
+  height: 35vh;
   width: 100%;
 }
 .newsItems p{
-  height: 20%;
+  height: 80px;
+  margin: 0;
   background-color: rgb(67, 67, 216);
   color: white;
   text-align: center;
+  overflow: auto;
 }
 .newsBtn{
   height: 100%;
-  width: 5vw;
+  width: 7.5vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .newsBtn button{
   border: 2px solid black;
-  font-size: 25px;
-  width: 50px;
-  height: 50px;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50px;
 }
 .newsBtn button:hover{
   background-color: silver;
 }
 #SMScr{
-  height: 20vh;
+  max-height: 150px;
   background-color: brown;
 }
 #tags{
@@ -330,142 +351,29 @@ body{
 }
 #devDetails{
   color: white;
-  font-size: 25px;
+  font-size: 1.3rem;
   text-align: center;
 }
-#userProfScr h1{
-  font-size: 70px;
-  font-style: italic;
-  font-weight: bold;
-  height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Times New Roman', Times, serif;
-}
-#UPImage{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-#UPImage p{
-  display: none;
-  height: 50px;
-  text-align: center;
-  font-weight: bolder;
-  position: relative;
-  bottom: 200px;
-  color: blue;
-  font-size: 30px;
-}
-#UPImage div{
-  height: 30px;
-}
-#imageInput{
-  display: none;
-}
-#UPImage img{
-  display: block;
-  width: 23vw;
-  height: 50vh;
-  border: 2px solid black;
-  border-radius: 180px;
-  background-color: white;
-}
-#UPImage img:hover{
-  cursor: pointer;
-  opacity: 0.5;
-}
-#UPDetails{
-  width: 70vw;
-  margin: auto;
-  display: flex;
-  background-color: azure;
 
-}
-#UPDetails div{
-  font-family: 'Times New Roman', Times, serif;
-  margin: auto;
-  width: 80%;
-}
-#UPDetails p{
-  margin: 40px 20px;
-  font-size: 30px;
-}
-#UPDetails p span{
-  display: inline-block;
-  text-align: center;
-  width: 220px;
-}
 #BLScr{
-  /* background-color: rgb(234, 201, 234); */
   height: 100vh;
 }
 #BLImage{
-  /* border: 2px solid black; */
   padding: 20px;
   text-align: center;
 }
 #BLImage img{
   border: 2px solid black;
-  height: 50vh;
-  width: 25vw;
+  height: 300px;
+  width: 300px;
   border-radius: 240px;
 }
 #BLBalance p{
-  font-size: 50px;
+  font-size: 2.2rem;
   text-align: center;
   padding: 10px;
 }
-#MTScr{
-  /* background-color: rgb(234, 201, 234); */
-  height: 100vh;
-  display: flex;
-}
-#MTRightSec, #MSRightSec{
-  width: 50vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#MTLeftSec{
-  width: 50vw;
-  height: 70vh;
-  /* border: 2px solid black; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#MTRightSec img, #MSRightSec img{
-  border: 2px solid black;
-  height: 50vh;
-  width: 25vw;
-  border-radius: 240px;
-}
-#MTLeftSec div{
-  margin: 30px;
-  text-align: center;
-}
-#MTLeftSec span{
-  display: inline-block;
-  text-align: center;
-  width: 170px;
-  font-size: 25px;
-}
-#MTLeftSec input{
-  display: inline-block;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 3px;
-  width: 300px;
-  font-size: 25px;
-}
-#payBtn{
-  padding: 5px 30px;
-  font-size: 25px;
-}
+
 #MSRightSec{
   width: 30vw;
   /* border: 2px solid black; */
@@ -477,78 +385,33 @@ th, tr{
   width: 10vw;
 }
 
-#MTTop{
-  height: 30vh;
-  background-image: url("../public/MT2.png");
-  background-repeat: no-repeat;
-  background-size: 350px;
-  background-position: -105px -85px;
-}
-#MTTopBar{
-  height: 12vh;
-  width: 100vw;
-  border-radius: 0 0 20px 20px;
-  border: 1px solid black;
-  background-color: silver;
-  opacity: 0.8;
-  font-size: 55px;
-  font-family: serif;
-  text-align: center;
-  color: blue;
-  font-weight: bold;
-}
-#MTMid{
-  display: flex;
-}
-#MTLeft{
-  width: 45vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 70vh;
-  position: relative;
-  left: 20px;
-}
-#MTRight{
-  width: 50vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-}
-#MTLeftSecBrdr{
-  border: 2px solid blue;
-  border-radius: 25px;
-  height: 65vh;
-  width: 37vw;
-  box-shadow: 10px 10px 15px #888888;
-}
+
 #MSTop{
   /* border: 2px solid black; */
-  background-image: url('../public/MiniStatementRoute.jpeg');
-  background-size:contain;
   height: 70vh;
   width: 100vw;
+  background-image: url('../public/MiniStatementRoute.jpeg');
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 #MSTop h1{
-  font-size: 65px;
+  font-size: 2rem;
   font-weight: bold;
+  text-align: center;
   color: black;
   font-style: italic;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 #MSTop img{
   border: 2px solid black;
-  height: 50vh;
-  width: 25vw;
+  height: 300px;
+  width: 300px;
   border-radius: 190px;
 }
 #MSEmoji{
-  height: 40vh;
   width: 100vw;
   text-align: center;
 }
@@ -562,6 +425,9 @@ th, tr{
 }
 #MSTable div{
   border: 2px solid black;
+}
+#MSTable div table{
+  font-size: 1rem;
 }
 #BLScr{
   position: relative;
@@ -584,16 +450,325 @@ th, tr{
 #userProfScr{
   display: flex;
 }
+
+
+/* ******************************************************************************** */
+
+#UPImage:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
+#imageInput{
+  display: none;
+}
+#UPImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  background-color: aliceblue;
+  background-image: url('');
+  background-size: 100% 100%;
+}
+
 #UPLeft{
   width: 50vw;
-  height: 100vh;
+  min-height: 100vh;
+  border: 2px solid black;
+  background-color:aliceblue;
 }
 #UPRight{
+  border: 2px solid black;
   width: 50vw;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url('https://i.guim.co.uk/img/media/a17dbf5a56492520382dc4c77450c2fdf2dc2ad8/136_0_2683_1611/master/2683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=ab5eefcf7706b06d71048acba6096410');
-  background-size: 50vw 100vh;
+  background-size: 100% 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#UPDetails{
+  width: fit-content;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+  margin: auto;
+}
+#UPDetails p{
+  margin: 0.8rem 20px;
+  display: inline-block;
+  text-align: center;
+}
+#UPDetails div span{
+  display: inline-block;
+  text-align: center;
+  width: 220px;
+}
+#MTTop{
+  /* border: 2px solid black; */
+  height: 25vh;
+  width: 100vw;
+  background-image: url("../public/MT2.png");
+  background-repeat: no-repeat;
+  background-size: 20% 160%;
+  background-position: -10% 50%;
+}
+#MTTopBar{
+  font-size: 2.6rem;
+  height: 12vh;
+  width: 100vw;
+  border-radius: 0 0 20px 20px;
+  background-color: silver;
+  opacity: 0.8;
+  font-family: serif;
+  text-align: center;
+  color: blue;
+  font-weight: bold;
+}
+#MTLeft{
+  width: 45vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  position: relative;
+  left: 20px;
+}
+#MTLeft img{
+  height: 100%;
+  width: 100%;
+
+}
+#MTMid{
+  display: flex;
+}
+#MTRight{
+  /* background-color: aqua; */
+  width: 55vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+}
+#MTLeftSecBrdr{
+  margin: 0;
+  border: 2px solid blue;
+  border-radius: 25px;
+  height: fit-content;
+  width: 85%;
+  box-shadow: 10px 10px 15px #888888;
+  font-size: 1.3rem;
+  text-align: center;
+}
+#MSRightSec{
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#MTRight span{
+  display: inline-block;
+  text-align: center;
+  width: 7.6rem;
+}
+#MTRight input{
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px;
+  width: 60%;
+}
+.MTInputs{
+  margin: 1.2rem;
+}
+#payBtn{
+  padding: 5px 30px;
+  font-size: 25px;
+} 
+
+@media only screen and (min-width: 320px) and (max-width:768px){
+  html{
+    font-size: 16px;
+  }
+  .operBox img{
+    height: 150px;
+    width: 150px;
+  }
+  #UPImage{
+    height: 200px;
+    width: 200px;
+  }
+  #userProfScr{
+    flex-direction: column-reverse;
+  }
+  #UPLeft{
+    width: 100vw;
+    min-height: fit-content;
+  }
+  #UPRight{
+    width: 100vw;
+    min-height: 50vh;
+    background-size: 100% 100%;
+  }
+  #MTTop{
+    background-size: 50% 130%;
+    background-position: -40% 60%;
+  }
+  #MTLeft{
+    left: 0;
+    width: 40vw;
+    height: 60vh;
+  }
+  #MTRight{
+    width: 60vw;
+  }
+  #MTLeft img{
+    height:70% ;
+  }
+  #MSEmoji img{
+    height: 30vh;
+  }
+  #MSTable{
+    width: 100vw;
+  }
+  
+}
+
+
+@media only screen and (min-width: 768px) and (max-width:1256px){
+  html{
+    font-size: 18px;
+  }
+  #UPImage{
+    height: 250px;
+    width: 250px;
+  }
+  #UPLeft{
+    width: 60vw;
+    min-height: fit-content;
+  }
+  #UPRight{
+    width: 40vw;
+    min-height: 100vh;
+    background-size: 100% 100%;
+  }
+  #MTLeftSecBrdr{
+    width: 80%;
+  }
+  #MTLeft{
+    left: 0;
+    width: 40vw;
+    height: 60vh;
+  }
+  #MSTable{
+    width: 100vw;
+  }
+  
+}
+
+
+@media only screen and (min-width: 1256px) and (max-width:1568px){
+  html{
+    font-size: 20px;
+  }
+  #MTLeftSecBrdr{
+    width: 65%;
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width:1568px){
+}
+@media only screen and (min-width: 310px) and (max-width:500px){
+  #MsRightSec div{
+    text-align: center;
+  }
+  #MsRightSec img, #MsRightSec p{
+    width:80%;
+    margin: auto;
+  }
+  #MsLeftSec{
+    width: 100vw;
+  }
+  #MsRightSec{
+    width: 100vw;
+  }
+  #UPDetails div span{
+    display: block;
+  }
+  .operBox{
+    width: 100vw;
+  }
+  #UPDetails div p{
+    text-align: center;
+    display: block;
+  }
+  #MTTop{
+    height: 20vh;
+  }
+  #MTLeft{
+    width: 100vw;
+    height: 50vh;
+  }
+  #MTRight{
+    width: 100vw;
+  }
+  #MTMid{
+    flex-direction: column;
+  }
+  #BLImage img{
+    border: 2px solid black;
+    height: 250px;
+    width: 250px;
+    border-radius: 240px;
+  }
+  #MSTop{
+    height: 50vh;
+  }
+  #MSTop img{
+    border: 2px solid black;
+    height: 200px;
+    width: 200px;
+    border-radius: 190px;
+  }
+  #MSEmoji img{
+    height: 20vh;
+  }
+  #MSTable div table{
+    font-size: 8px;
+  }
+  .navbar-brand{
+    display: none;
+  }
+  .userActionBtn{
+    font-size: 12px;
+    margin: 2px;
+  }
+  .form-check label{
+    font-size: 12px;
+  }
+}
+@media only screen and (min-width: 300px) and (max-width:920px){
+  #MTRight span{
+    width: 100%;
+    text-align: center;
+    /* border: 2px solid black; */
+  }
+  #MTRight input{
+    width: 90%;
+    text-align: center;
+    /* border: 2px solid black; */
+    margin: 2px;
+  }
+  
+}
+@media only screen and (min-width: 500px) and (max-width:768px){
+  #MsRightSec{
+    width: 30vw;
+  }
+  #MsRightSec img, #MsRightSec p{
+    width: 100%;
+  }
 }

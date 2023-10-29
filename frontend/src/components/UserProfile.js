@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getUser, updateDetails } from './HelperFunc'
+import { updateDetails } from './HelperFunc'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state/actionCreators';
@@ -25,7 +25,7 @@ function UserProfile() {
         {
             const file = img.files[0];
             const url = URL.createObjectURL(file);
-            document.getElementById('UPImg').src = url;
+            document.getElementById('UPImage').style.backgroundImage = `url(${url})`;
             updateDetails('/updateDetails',url);    
         }
     })
@@ -36,10 +36,13 @@ function UserProfile() {
     
     useEffect(()=>{
         x.setUserDetails(nav);
+        document.getElementById('UPBtn').style.display='none';
     },[])   
     useEffect(()=>{
+        document.getElementById('UPImage').style.backgroundImage = `url(${user?.imageURL})`;
+    },[user])
+    useEffect(()=>{
         document.getElementById('UPDetails').style.backgroundColor = mode == 'light' ? 'azure' : '#393737';
-
     },[mode])
 
   return (
@@ -47,26 +50,33 @@ function UserProfile() {
         <div id='userProfScr'>
             <div id="UPLeft">
                 <div id="UPDetails">
-                    <div>
-                        <p><span><b>Name : </b></span>{user?.name} </p>
-                        <p><span><b>Address : </b></span>{user?.address} </p>
-                        <p><span><b>Phone No. : </b></span>{user?.phoneNo} </p>
-                        <p><span><b>Date of Birth : </b></span>{user?.dob} </p>
-                        <p><span><b>Email : </b></span>{user?.email} </p>
-                        <p><span><b>Gender : </b></span>{user?.gender} </p>
-                        <p><span><b>Account No. : </b></span>{user?.accountNo} </p>
-                        <p><span><b>Username : </b></span>{user?.userName} </p>
-                    </div>
+                        <div><span><b>Name </b></span><p>{user?.name} </p></div>
+                        <div><span><b>Address</b></span><p>{user?.address} </p></div>
+                        <div>
+                            <span><b>Phone No.</b></span><p>{user?.phoneNo} </p>
+                        </div>
+                        <div>
+                            <span><b>Date of Birth</b></span><p>{user?.dob} </p>
+                        </div>
+                        <div>
+                            <span><b>Email</b></span><p>{user?.email} </p>
+                        </div>
+                        <div>
+                            <span><b>Gender</b></span><p>{user?.gender} </p>
+                        </div>
+                        <div>
+                            <span><b>Account No.</b></span><p>{user?.accountNo} </p>
+                        </div>
+                        <div>
+                            <span><b>Username</b></span><p>{user?.userName} </p>
+                        </div>
                 </div>
             </div>
 
             <div id="UPRight">
-                <div id='UPImage'>
-                    <img id='UPImg' src={user?.imageURL} alt="Error Loading Image" onMouseOver={()=>{displayText('block')}} onMouseOut={()=>{displayText('none')}} onClick={uploadImage}/>
-                    <div>
+                <div id='UPImage' onClick={uploadImage} onMouseOver={()=>{displayText('block')}} onMouseOut={()=>{displayText('none')}}>
                         <p id='UPBtn'>Click to change</p>
-                        <input type="file" name="image" id="imageInput" accept='image/*'/>
-                    </div>
+                    <input type="file" name="image" id="imageInput" accept='image/*'/>
                 </div>
             </div>
         </div>

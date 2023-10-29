@@ -1,28 +1,42 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { newsItems } from './HelperFunc';
 
 function News() {
     let start = 0;
+    const [noOfItems,usenoOfItems] = useState(4);
 
     useEffect(()=>{
         toggleNewsItems();
-    },[]);
+        window.addEventListener('resize',(e)=>{
+            if(e.target.innerWidth>=1256)
+                usenoOfItems(4);
+            else if(e.target.innerWidth>=756)
+                usenoOfItems(3);
+            else if(e.target.innerWidth>=500)
+                usenoOfItems(2);
+            else if(e.target.innerWidth>=350)
+                usenoOfItems(1);
+        })
+    });
+
+
 
     const toggleNewsItems = useCallback((direc) =>{
-        Array.from(document.getElementsByClassName('newsItems')).forEach(element=>{
+        Array.from(document.getElementsByClassName('newsItemsLinks')).forEach(element=>{
             element.remove(); 
         })
         if(direc == 'forward')
             document.querySelector('#backward div').style.display='block';
         if(direc == 'backward')
             document.querySelector('#forward div').style.display='block';
-        start = direc == 'backward' ? (Math.floor((start-1)/4)-1)*4: start;
-        const end = start+4;
+        start = direc == 'backward' ? (Math.floor((start-1)/noOfItems)-1)*noOfItems: start;
+        const end = start+noOfItems;
         while(start<end && start<newsItems.length)
         {
             const link = document.createElement('a');
             link.setAttribute('href','https://www.hindustantimes.com/education/employment-news/sbi-po-2023-admit-card-likely-next-week-steps-to-download-from-sbicoin-101696744293004.html');
             link.setAttribute('target','_blank');
+            link.setAttribute('class','newsItemsLinks');
             const box = document.createElement('div');
             box.setAttribute('class','newsItems');
             const img = document.createElement('img');
@@ -38,7 +52,7 @@ function News() {
         }
         if(start==newsItems.length)
             document.querySelector('#forward div').style.display='none';
-        if(start==4)
+        if(start==noOfItems)
             document.querySelector('#backward div').style.display='none';
     })
 
