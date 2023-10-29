@@ -46,7 +46,7 @@ nav{
 /* **************** HomePage UI *************** */
 #HpScr{
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   /* background-color: antiquewhite; */
   display: flex;
   align-items: center;
@@ -682,6 +682,14 @@ th, tr{
 @media only screen and (min-width: 768px) and (max-width:1568px){
 }
 @media only screen and (min-width: 310px) and (max-width:500px){
+  #HpSections{
+    flex-direction: column-reverse;
+
+  }
+  #HpLeftSec, #HpRightSec{
+    width: 100%;
+    text-align: center;
+  }
   #MsRightSec div{
     text-align: center;
   }
@@ -770,5 +778,17 @@ th, tr{
   }
   #MsRightSec img, #MsRightSec p{
     width: 100%;
+  }
+  .loginCredentials span{
+    font-size: 18px;
+    width: fit-content;
+  }
+  .loginCredentials input{
+    font-size: 18px;
+    width: 170px;
+  }
+  #loginBtn,#signUpBtn{
+    font-size: 18px;
+    padding: 5px 15px;
   }
 }
