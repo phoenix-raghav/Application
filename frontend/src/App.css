@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 body{
-  /* background-color: rgb(234, 201, 234); */
   background-color: white;
 }
 .noSpacing{
@@ -47,7 +46,6 @@ nav{
 #HpScr{
   width: 100vw;
   min-height: 100vh;
-  /* background-color: antiquewhite; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +61,6 @@ nav{
   margin: 20px;
 }
 #HpHeading{
-  /* border: 1px solid black; */
   padding: 20px;
   height: 20%;
   font-size: 30px;
@@ -72,7 +69,6 @@ nav{
 }
 #HpLeftSec{
   height: 80%;
-  /* border: 1px solid black; */
   width: 50%;
   display: flex;
   align-items: center;
@@ -81,21 +77,16 @@ nav{
 #HpRightSec{
   width: 50%;
   height: 80%;
-  /* border: 1px solid black; */
 }
 #HpRightSec img{
   width: 90%;
   height: 90%;
-  /* border: 1px solid black; */
 }
 #HpSections{
   display: flex;
   width: 100%;
   height: 80%;
 }
-/* #HpLeftContent button{
-  color: white;
-} */
 #HpLeftContent{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -242,7 +233,6 @@ marquee{
   margin: 0;
 }
 #operations{
-  /* height: 50vh; */
   padding: 30px 0;
   display: flex;
   justify-content: space-evenly;
@@ -254,7 +244,6 @@ marquee{
   justify-content: center;
   flex-direction: column;
   min-width: fit-content;
-  /* border: 2px solid black ; */
 }
 .operBox img{
   height: 240px;
@@ -376,7 +365,6 @@ marquee{
 
 #MSRightSec{
   width: 30vw;
-  /* border: 2px solid black; */
 }
 table{
   font-size: 20px;
@@ -387,7 +375,6 @@ th, tr{
 
 
 #MSTop{
-  /* border: 2px solid black; */
   height: 70vh;
   width: 100vw;
   background-image: url('../public/MiniStatementRoute.jpeg');
@@ -477,7 +464,7 @@ th, tr{
   width: 50vw;
   min-height: 100vh;
   border: 2px solid black;
-  background-color:aliceblue;
+  /* background-color:aliceblue; */
 }
 #UPRight{
   border: 2px solid black;
@@ -506,7 +493,6 @@ th, tr{
   width: 220px;
 }
 #MTTop{
-  /* border: 2px solid black; */
   height: 25vh;
   width: 100vw;
   background-image: url("../public/MT2.png");
@@ -544,7 +530,6 @@ th, tr{
   display: flex;
 }
 #MTRight{
-  /* background-color: aqua; */
   width: 55vw;
   display: flex;
   align-items: center;
@@ -762,12 +747,10 @@ th, tr{
   #MTRight span{
     width: 100%;
     text-align: center;
-    /* border: 2px solid black; */
   }
   #MTRight input{
     width: 90%;
     text-align: center;
-    /* border: 2px solid black; */
     margin: 2px;
   }
   

@@ -1,10 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom'
-import HomePageContent from './HomePageContent'
-import Login from './Login'
-import SignUp from './SignUp'
-import CreateAccount from './CreateAccount'
-import AccountDisplay from './AccountDisplay'
 import { useSelector } from 'react-redux'
 
 function HomePage(props) {

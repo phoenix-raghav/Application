@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 const Schema1 = new mongoose.Schema({
     depositor: String,

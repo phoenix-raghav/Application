@@ -24,9 +24,15 @@ function UserProfile() {
         if(img.files.length)
         {
             const file = img.files[0];
-            const url = URL.createObjectURL(file);
-            document.getElementById('UPImage').style.backgroundImage = `url(${url})`;
-            updateDetails('/updateDetails',url);    
+            if(file){
+                const reader = new FileReader();
+                reader.onload = function(e)
+                {
+                    const binary = e.target.result;
+                    document.getElementById('UPImage').style.backgroundImage = `url(${binary})`;
+                }
+                reader.readAsDataURL(file);
+            }
         }
     })
     const displayText = useCallback((x)=>{
@@ -42,7 +48,7 @@ function UserProfile() {
         document.getElementById('UPImage').style.backgroundImage = `url(${user?.imageURL})`;
     },[user])
     useEffect(()=>{
-        document.getElementById('UPDetails').style.backgroundColor = mode == 'light' ? 'azure' : '#393737';
+        document.getElementById('UPLeft').style.backgroundColor = mode == 'light' ? 'azure' : '#393737';
     },[mode])
 
   return (
