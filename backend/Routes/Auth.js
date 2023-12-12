@@ -5,7 +5,9 @@ import verifyToken from '../middlewares/Token.js';
 import bcryptjs from 'bcryptjs';
 import AccountNo from '../models/AccountNo.js';
 import jwt from 'jsonwebtoken';
-const JWT_KEY = 'Hello$World';
+import dotenv from 'dotenv';
+dotenv.config();
+const JWT_KEY = process.env.JWT_SECRET;
 
 const Router = express.Router();
 

@@ -2,8 +2,10 @@ import express from 'express';
 import connectToMongo from './db.js';
 import Auth from './Routes/Auth.js';
 import Transactions from './Routes/Transactions.js';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 connectToMongo();
 
 app.use((req,res,next)=>{
