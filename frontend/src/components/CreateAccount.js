@@ -20,7 +20,7 @@ function CreateAccount() {
         try{
             document.querySelector('.invalidDetails').innerHTML='';
             const x = Array.from(document.querySelectorAll('.userDetails input'));
-            const url = 'http://127.0.0.1:8080/createAccount';
+            const url = 'https://application-brown-zeta.vercel.app/createAccount';
             const gend = document.getElementsByName('gender')[0].checked ? 'male' : 'female';
             const params = {
                 method: "POST",

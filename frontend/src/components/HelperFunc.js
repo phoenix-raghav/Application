@@ -16,7 +16,7 @@ const makePOSTRequest = async(url,body) => {
 
 export async function updateDetails (endpoint, imageURL){
     try{
-        const url = 'http://127.0.0.1:8080' + endpoint;
+        const url = 'https://application-brown-zeta.vercel.app' + endpoint;
         const body = {content : {imageURL: imageURL}}
         const data = await makePOSTRequest(url, body);
         alert(data.msg)
@@ -30,7 +30,7 @@ export async function authFunc (endpoint, isSignUp,nav, setUserDetails){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
         const x = Array.from(document.querySelectorAll('.loginCredentials input'));
-        const url = 'http://127.0.0.1:8080' + endpoint;
+        const url = 'https://application-brown-zeta.vercel.app' + endpoint;
         const body =  isSignUp ? {accountNo: x[0].value, userName: x[1].value, password: x[2].value} : {userName: x[0].value, password: x[1].value};
 
         const data = await makePOSTRequest(url,body);
@@ -49,7 +49,7 @@ export async function makeTransaction(endpoint, user){
     try{
         document.querySelector('.invalidDetails').innerHTML='';
         const x = Array.from(document.querySelectorAll('.MTInputs input'));
-        const url = 'http://127.0.0.1:8080' + endpoint;
+        const url = 'https://application-brown-zeta.vercel.app' + endpoint;
 
         if(x[2].value>user.balance)
         {
@@ -69,7 +69,7 @@ export async function makeTransaction(endpoint, user){
 }
 export async function getTransList(endpoint, userName, setList){
     try{
-        const url = 'http://127.0.0.1:8080' + endpoint;
+        const url = 'https://application-brown-zeta.vercel.app' + endpoint;
 
         const body = {userName:userName};
         const data = await makePOSTRequest(url,body);
@@ -78,13 +78,13 @@ export async function getTransList(endpoint, userName, setList){
     }
     catch(err){
         console.log(err);
-        alert('Internal server error1')
+        alert('Internal server error')
     }
 }
 
 export async function getUser(nav){
     try{
-        const url = 'http://127.0.0.1:8080/getUser';
+        const url = 'https://application-brown-zeta.vercel.app/getUser';
 
         const params = {
             method: "POST",
