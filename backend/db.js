@@ -1,7 +1,8 @@
 import db from 'mongoose';
+import dotenv from 'dotenv';
 
-// const mongoURL = 'mongodb://localhost:27017/BankingApp';
-const mongoURL = 'mongodb+srv://MongoDB:MongoDB_Password@cluster0.o81npqr.mongodb.net/app?retryWrites=true&w=majority';
+dotenv.config();
+const mongoURL = process.env.DATABASE_URL;
 
 const connectToMongo = async() =>{
     try{
