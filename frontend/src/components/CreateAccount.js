@@ -1,11 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
 
-function CreateAccount(props) {
-    props.setHpHeading("Enter your Details");
+function CreateAccount() {
+
+    const nav = useNavigate();
+    const dispatch = useDispatch();
+    const disableBtn = useSelector(state=>state.disableBtn);
+    const y = bindActionCreators(actionCreators,dispatch); 
+    
     useEffect(()=>{
-        props.setDisableBtn(true);
+        y.actionHeading("Enter your Details");
+        y.disableButton();
       },[])
-    const sendData = async() =>{
+      
+    const sendData = useCallback(async() =>{
         try{
             document.querySelector('.invalidDetails').innerHTML='';
             const x = Array.from(document.querySelectorAll('.userDetails input'));
@@ -14,7 +25,7 @@ function CreateAccount(props) {
             const params = {
                 method: "POST",
                 headers : {'Content-Type': 'application/json'},
-                body: JSON.stringify({name: x[0].value, address: x[1].value, gender: gend, dob: x[4].value, phoneNo: x[5].value, email: x[6].value})
+                body: JSON.stringify({name: x[0].value, address: x[1].value, gender: gend, dob: x[4].value, phoneNo: x[5].value, email: x[6].value, balance: x[7].value})
             }
             const rsp = await fetch(url,params);
             const data = await rsp.json();  
@@ -25,25 +36,25 @@ function CreateAccount(props) {
             if(rsp.status==200)
             {
                 alert(data.msg);
-                localStorage.setItem('accNo',data.accountNo);
-                window.location.href = 'http://localhost:3000/accountNo';
+                y.setAccountNo(data.accountNo);
+                nav('/accountNo')
             }
         }
-        catch{
-            console.log('Internal Server Error');
+        catch(err){
+            console.log('Internal server error');
         }
-    }
+    },[])
 
   return (
     <div id='CreateAccount'>
         <div className="invalidDetails"></div>
         <div className='userDetails'>
             <span>Name : </span>
-            <input type="text" placeholder='Enter your name' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="text" placeholder='Enter your name' onChange={()=>{y.checkButton('userDetails')}}/>
         </div>
         <div className='userDetails'>
             <span>Address : </span>
-            <input type="text" placeholder='Enter your address' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="text" placeholder='Enter your address' onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Gender : </span>
@@ -51,17 +62,21 @@ function CreateAccount(props) {
         </div>
         <div className='userDetails'>
             <span>Date of Birth : </span>
-            <input type="date" onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="date" onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Phone No. : </span>
-            <input type="number" placeholder='Enter your phone number' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="number" placeholder='Enter your phone number' onChange={()=>y.checkButton('userDetails')}/>
         </div>
         <div className='userDetails'>
             <span>Email : </span>
-            <input type="email" placeholder='Enter your email' onChange={()=>{props.disableBtn('userDetails','createAcBtn')}}/>
+            <input type="email" placeholder='Enter your email' onChange={()=>y.checkButton('userDetails')}/>
         </div>
-        <button onClick={sendData} className='btn' id='createAcBtn' disabled={props.disabledBtn}>Submit</button>
+        <div className='userDetails'>
+            <span>Amount : </span>
+            <input type="number" placeholder='Enter your initial amount' onChange={()=>y.checkButton('userDetails')}/>
+        </div>
+        <button onClick={sendData} className='btn' id='createAcBtn' disabled={disableBtn}>Submit</button>
     </div>
   )
 }

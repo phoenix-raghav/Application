@@ -1,8 +1,18 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import withRouter, { Link } from 'react-router-dom';
-function AccountDisplay(props) {
-  props.setHpHeading("Account Details");
-  const accNo = localStorage.getItem('accNo');
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/actionCreators';
+function AccountDisplay() {
+
+  const dispatch = useDispatch();
+  const accNo = useSelector(state=>state.accountNo);
+  const {actionHeading} = bindActionCreators(actionCreators,dispatch); 
+  
+  useEffect(()=>{
+    actionHeading("Account Details");
+  },[]);
+  
   return (
     <>
         <div id="dispAccNo">
